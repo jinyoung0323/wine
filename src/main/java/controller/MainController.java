@@ -22,6 +22,8 @@ public class MainController {
 		System.out.println("나다");
 		
 		System.out.println("업데이트 되나?");
+		
+		System.out.println("된다 멍춍아");
 		return "main/index";
 		
 		
