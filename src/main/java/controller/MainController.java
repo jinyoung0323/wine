@@ -10,7 +10,7 @@ public class MainController {
 	/*JBlog 메인 폼 출력*/
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String main() {
-		System.out.println("sdf");
+		System.out.println("sdf22");
 		return "main/index";
 	}
 }
