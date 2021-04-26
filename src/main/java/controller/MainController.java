@@ -18,6 +18,8 @@ public class MainController {
 		System.out.println("1111");
 		
 		System.out.println("dddd");
+		
+		System.out.println("나다");
 		return "main/index";
 		
 		
