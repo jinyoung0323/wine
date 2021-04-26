@@ -16,6 +16,8 @@ public class MainController {
 		System.out.println("test");
 		
 		System.out.println("1111");
+		
+		System.out.println("dddd");
 		return "main/index";
 		
 		
