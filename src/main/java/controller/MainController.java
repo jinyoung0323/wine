@@ -20,6 +20,8 @@ public class MainController {
 		System.out.println("dddd");
 		
 		System.out.println("나다");
+		
+		System.out.println("업데이트 되나?");
 		return "main/index";
 		
 		
