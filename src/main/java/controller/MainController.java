@@ -26,6 +26,8 @@ public class MainController {
 		System.out.println("된다 멍춍아");
 		
 		System.out.println("불안하게 하지 말아주");
+		
+		System.out.println("bong test");
 		return "main/index";
 		
 		
