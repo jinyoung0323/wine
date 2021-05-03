@@ -9,15 +9,15 @@ import com.javaex.repository.MainDao;
 
 @Controller
 public class MainController {
-	
-	@Autowired
-	private MainDao dao;
-	
-	@RequestMapping(value="/")
-	public String main() {
+   
+   @Autowired
+   private MainDao dao;
+   
+   @RequestMapping(value="/")
+   public String main() {
 
-		return "main/index";
-		
-		
-	}
+      return "cart/list";
+      
+      
+   }
 }
