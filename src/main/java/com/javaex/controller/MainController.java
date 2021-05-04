@@ -1,4 +1,4 @@
-package com.javaex.controller;
+package com.javaex                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           .controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ public class MainController {
    @RequestMapping(value="/")
    public String main() {
 
-      return "cart/list";
+      return "main/index";
       
       
    }
