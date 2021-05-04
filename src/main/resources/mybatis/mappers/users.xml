@@ -3,15 +3,19 @@
 
 <mapper namespace="users">
 
-<select id="getList" > 
+<select id="getUser" resultType="com.javaex.vo.UsersVo"> 
 		<![CDATA[	
-		SELECT NO , 
-			   NAME, 
-			   PASSWORD , 
-			   CONTENT , 
-			   REG_DATE 
-		  FROM GUESTBOOK 
-		 ORDER BY NO DESC
+		SELECT EMAIL, 
+				NICK_NAME, 
+				USER_NO, 
+				PASSWORD, 
+				PHONE_NO,
+				BIRTH, 
+				GRADE, 
+				ADDRESS 
+		FROM Users
+		WHERE EMAIL=#{EMAIL}
+			AND PASSWORD=#{PASSWORD}
 		]]>
 	</select>
 </mapper>
