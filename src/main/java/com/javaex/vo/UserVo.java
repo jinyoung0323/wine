@@ -1,7 +1,7 @@
 package com.javaex.vo;
 
 
-public class UsersVo {
+public class UserVo {
 
 	private String email;
 	private String nickName;
@@ -12,7 +12,7 @@ public class UsersVo {
 	private int grade;
 	private String address;
 	
-	public UsersVo(String email, String nickName, int userNo, String password, String phoneNo, String birth, int grade,
+	public UserVo(String email, String nickName, int userNo, String password, String phoneNo, String birth, int grade,
 			String address) {
 		super();
 		this.email = email;
@@ -25,7 +25,7 @@ public class UsersVo {
 		this.address = address;
 	}
 	
-	public UsersVo() {
+	public UserVo() {
 		
 	}
 	
