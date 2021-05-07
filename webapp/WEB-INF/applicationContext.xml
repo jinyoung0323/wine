@@ -30,7 +30,7 @@
 	<!-- oracle datasource -->
 	<bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource"
 		destroy-method="close">
-		<property name="URL" value="jdbc:oracle:thin:@DESKTOP-2KGJ9KF:1521:xe" />
+		<property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe" />
 		<property name="user" value="wine" />
 		<property name="password" value="wine" />
 		<property name="connectionCachingEnabled" value="true" />

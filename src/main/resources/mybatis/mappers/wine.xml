@@ -19,7 +19,7 @@
 	<insert id="insert" parameterType="com.javaex.vo.WineVo">
 		<![CDATA[
 			insert into wine
-			values (seq_wine_no.nextval, #{wineName}, #{wineType}, #{wineCountry})
+			values (seq_wine_no.nextval, #{wineName}, #{wineType}, #{wineCountry}, sysdate)
 		]]>
 	</insert>
 	
