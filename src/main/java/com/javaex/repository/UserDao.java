@@ -15,7 +15,7 @@ public class UserDao {
 	//login
 	public UserVo login(UserVo userVo) {
 		System.out.println("login");
-		return sqlSession.selectOne("users.login", userVo);
+		return sqlSession.selectOne("UserXml.login", userVo);
 	}
 
 }

@@ -27,7 +27,7 @@
     
 
     <!-- Bootstrap core CSS -->
-<link href="/wine/assets/resources/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/wine/assets/bootstrap_assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!--    <style>-->
 <!--      .bd-placeholder-img {-->
@@ -126,7 +126,7 @@
   </main>
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 
-	<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/wine/assets/bootstrap_assets/dist/js/bootstrap.bundle.min.js"></script>
     
   </body>
 </html>

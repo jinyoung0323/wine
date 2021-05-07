@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="users">
+<mapper namespace="UserXml">
 
-<select id="login" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo"> 
+	<!-- 로그인 -->
+	<select id="login" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo"> 
 		<![CDATA[	
-		SELECT EMAIL, 
+		SELECT  EMAIL, 
 				NICK_NAME, 
 				USER_NO, 
 				PASSWORD, 
@@ -13,9 +14,9 @@
 				BIRTH, 
 				GRADE, 
 				ADDRESS 
-		FROM Users
-		WHERE EMAIL=#{EMAIL}
-			AND PASSWORD=#{PASSWORD}
+		FROM USERS
+		WHERE EMAIL = #{EMAIL}
+		AND PASSWORD = #{PASSWORD}
 		]]>
 	</select>
 </mapper>

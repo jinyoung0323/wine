@@ -24,7 +24,7 @@
 
 
   <!-- Bootstrap core CSS -->
-  <link href="/wine/assets/resources/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/wine/assets/bootstrap_assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
     .bd-placeholder-img {
@@ -51,7 +51,7 @@
 <div class="container">
   <main>
     <div class="py-5 text-center">
-      <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+      <img class="d-block mx-auto mb-4" src="/wine/assets/bootstrap_assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
       <h2>회원가입 form</h2>
       <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
     </div>
@@ -148,7 +148,7 @@
 </div>
 
 
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/wine/assets/bootstrap_assets/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="form-validation.js"></script>
 </body>

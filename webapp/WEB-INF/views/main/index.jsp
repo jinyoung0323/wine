@@ -188,7 +188,7 @@
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 
 
-	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/wine/assets/bootstrap_assets/dist/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
