@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.javaex.repository.UserDao;
+import com.javaex.dao.UserDao;
 import com.javaex.vo.UserVo;
 
 @Controller

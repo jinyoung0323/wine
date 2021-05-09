@@ -4,27 +4,62 @@
 <mapper namespace="WineXml">
 
 	<!-- 와인리스트 불러오기 -->
-	<select id="selectList" resultType="wine">
-		SELECT WINE_NO,
-			   WINE_NAME,
-			   WINE_TYPE,
-			   WINE_COUNTRY,
-			   REG_DATE
-		FROM   WINE
-		ORDER BY REG_DATE DESC
+	<select id="selectList" parameterType="com.javaex.vo.WineVo" resultType="com.javaex.vo.WineVo">
+		<![CDATA[
+			select w.wine_no, 
+				   w.wine_name,
+				   w.wine_type, 
+				   w.wine_country, 
+				   w.reg_date, 
+				   d.wine_price, 
+				   d.wine_stock,
+				   d.wine_image
+			from wine w, wine_description d
+			where w.wine_no = d.wine_no(+)
+			order by w.reg_date desc
+		]]>
+	</select>
 
+	<!-- 와인리스트 타입별 정렬 -->
+	<select id="selectListByType" resultType="wine">
+		<![CDATA[
+			select w.wine_no, 
+				   w.wine_name,
+				   w.wine_type, 
+				   w.wine_country, 
+				   w.reg_date, 
+				   d.wine_price, 
+				   d.wine_stock,
+				   d.wine_image
+			from wine w, wine_description d 
+			where w.wine_no = d.wine_no(+)
+		]]>
+		<if test="wineType=='red'">
+			AND w.wine_type = 1
+		</if>
+		<if test="wineType=='white'">
+			AND w.wine_type = 2
+		</if>
+		<if test="wineType=='rose'">
+			AND w.wine_type = 3
+		</if>
+		<![CDATA[
+			order by w.reg_date desc
+		]]>
+		
 	</select>
 
 	<!-- 와인 추가 -->
 	<insert id="insert" parameterType="com.javaex.vo.WineVo">
 		<![CDATA[
 			insert into wine
-			values (seq_wine_no.nextval, #{wineName}, #{wineType}, #{wineCountry}, sysdate)
+			values (seq_wine_no.nextval, #{wine_name}, #{wine_type}, #{wine_country}, sysdate)
 		]]>
 	</insert>
-	
+
 	<!-- 와인 삭제 -->
-	<delete id="delete" parameterType="com.javaex.vo.WineVo"> 
-		delete from wine where wine_no = #{wineNo}
+	<delete id="delete" parameterType="com.javaex.vo.WineVo">
+		delete from wine where wine_no
+		= #{wine_no}
 	</delete>
 </mapper>

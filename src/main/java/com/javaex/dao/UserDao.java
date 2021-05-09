@@ -1,4 +1,4 @@
-package com.javaex.repository;
+package com.javaex.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;

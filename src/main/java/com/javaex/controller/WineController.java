@@ -5,15 +5,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.javaex.repository.WineDao;
+import com.javaex.dao.WineDao;
 import com.javaex.vo.WineVo;
 
 @Controller
 public class WineController {
 
 	@Autowired
-	WineDao wineDao;
+	private WineDao wineDao;
+
+	// 와인 리스트 불러오기
+	@RequestMapping(value = "/wineType")
+	public ModelAndView list(ModelAndView mav, int wine_type) {
+
+		mav.addObject("wineList", wineDao.getList(wine_type));
+		mav.setViewName("main/index");
+
+		return mav;
+	}
 
 	// 와인 등록
 	@RequestMapping(value = "/wineRegist", method = RequestMethod.POST)

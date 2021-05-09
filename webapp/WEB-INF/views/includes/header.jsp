@@ -65,10 +65,25 @@
 						<li><a href="/wine/user/joinform">회원가입</a></li>
 					</c:when>
 					<c:otherwise>
-						<!-- 로그인 후 -->
+						<!--
 						<li><a href="">회원정보수정</a></li>
 						<li><a href="">로그아웃</a></li>
 						<li>${authUser.name }님 안녕하세요^^;</li>
+						-->
+						
+						<!-- 일반 사용자 -->
+						<c:if test="${authUser.grade == 1}">
+							<li>${authUser.name }님안녕하세요^^;</li>
+							<li><a href="/wine/user/modifyform">회원정보수정</a></li>
+							<li><a href="/wine/user/logout">로그아웃</a></li>
+						</c:if>
+						
+						<!-- 관리자 -->
+						<c:if test="${authUser.grade == 2}">
+							<li>${authUser.name }님안녕하세요^^;</li>
+							<li><a href="/wine/winelist/view_admin">와인등록</a></li>
+							<li><a href="/wine/user/logout">로그아웃</a></li>
+						</c:if>
 					</c:otherwise>
 				</c:choose>
 			</div>
