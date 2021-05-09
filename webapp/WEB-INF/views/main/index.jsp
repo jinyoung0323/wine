@@ -36,8 +36,7 @@
 							<option value="red">레드와인</option>
 							<option value="white">화이트와인</option>
 							<option value="rose">로제와인</option>
-						</select> 
-						 <input type="submit" value="정렬">
+						</select> <input type="submit" value="정렬">
 					</form>
 
 				</div>
