@@ -1,6 +1,8 @@
 <%@ page isELIgnored="false" language="java"
 	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <%@page import="com.javaex.vo.WineVo"%>
 <%@page import="com.javaex.vo.WineDescriptionVo"%>
@@ -94,8 +96,10 @@
 									</p>
 									<p class="card-text">와인생산국 : ${winelist.wine_country}</p>
 									<p class="card-text">등록일 : ${winelist.reg_date}</p>
-									<p class="card-text">와인가격 : ${winelist.wine_price}</p>
-									<p class="card-text">와인재고 : ${winelist.wine_stock}</p>
+									<p class="card-text">와인가격 : 
+									<fmt:formatNumber value="${winelist.wine_price}" pattern="#,###" />원
+									</p>
+									<p class="card-text">와인재고 : ${winelist.wine_stock}개</p>
 								</div>
 							</div>
 						</c:forEach>
