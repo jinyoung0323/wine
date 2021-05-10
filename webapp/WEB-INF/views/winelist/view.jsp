@@ -27,7 +27,7 @@
     
 
     <!-- Bootstrap core CSS -->
-<link href="/wine/assets/resources/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/wine/assets/bootstrap_assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!--    <style>-->
 <!--      .bd-placeholder-img {-->
@@ -60,12 +60,9 @@
       <a class="p-2 link-secondary" href="#">Technology</a>
     </nav>
   </div>
-<footer class="blog-footer">
-  <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-  <p>
-    <a href="#">Back to top</a>
-  </p>
-</footer>
+
+<!-- footer -->
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 
 
     
