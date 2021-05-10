@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<%@ page import="com.javaex.dao.CartDao"%>
+<%@ page import="com.javaex.vo.CartVo"%>
 
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -212,47 +214,24 @@ hr {
                 </div>
 
                 <div class="mt-4">
-                    <div class="row text-600 text-white bgc-default-tp1 py-25">
-                        <div class="d-none d-sm-block col-1">#</div>
-                        <div class="col-9 col-sm-5">Description</div>
-                        <div class="d-none d-sm-block col-4 col-sm-2">Qty</div>
-                        <div class="d-none d-sm-block col-sm-2">Unit Price</div>
-                        <div class="col-2">Amount</div>
-                    </div>
+						<div class="row text-600 text-white bgc-default-tp1 py-25">
+							<div class="d-none d-sm-block col-1">#</div>
+							<div class="col-9 col-sm-5">상품명</div>
+							<div class="d-none d-sm-block col-4 col-sm-2">갯수</div>
+							<div class="d-none d-sm-block col-sm-2">상품 금액</div>
+							<div class="col-2">총 상품금액</div>
+						</div>
+						<c:forEach items="${ cart }" var="cart">
+							<div class="text-95 text-secondary-d3">
+								<div class="row mb-2 mb-sm-0 py-25">
+									<div class="d-none d-sm-block col-1">${ cart.cart_no }</div>
+									<div class="col-9 col-sm-5">${ cart.wine_name }</div>
+									<div class="d-none d-sm-block col-2">2</div>
+									<div class="d-none d-sm-block col-2 text-95">${ cart.wine_price }원</div>
+									<div class="col-2 text-secondary-d2">$20</div>
+								</div>
+						</c:forEach>
 
-                    <div class="text-95 text-secondary-d3">
-                        <div class="row mb-2 mb-sm-0 py-25">
-                            <div class="d-none d-sm-block col-1">1</div>
-                            <div class="col-9 col-sm-5">Domain registration</div>
-                            <div class="d-none d-sm-block col-2">2</div>
-                            <div class="d-none d-sm-block col-2 text-95">$10</div>
-                            <div class="col-2 text-secondary-d2">$20</div>
-                        </div>
-
-                        <div class="row mb-2 mb-sm-0 py-25 bgc-default-l4">
-                            <div class="d-none d-sm-block col-1">2</div>
-                            <div class="col-9 col-sm-5">Web hosting</div>
-                            <div class="d-none d-sm-block col-2">1</div>
-                            <div class="d-none d-sm-block col-2 text-95">$15</div>
-                            <div class="col-2 text-secondary-d2">$15</div>
-                        </div>
-
-                        <div class="row mb-2 mb-sm-0 py-25">
-                            <div class="d-none d-sm-block col-1">3</div>
-                            <div class="col-9 col-sm-5">Software development</div>
-                            <div class="d-none d-sm-block col-2">--</div>
-                            <div class="d-none d-sm-block col-2 text-95">$1,000</div>
-                            <div class="col-2 text-secondary-d2">$1,000</div>
-                        </div>
-
-                        <div class="row mb-2 mb-sm-0 py-25 bgc-default-l4">
-                            <div class="d-none d-sm-block col-1">4</div>
-                            <div class="col-9 col-sm-5">Consulting</div>
-                            <div class="d-none d-sm-block col-2">1 Year</div>
-                            <div class="d-none d-sm-block col-2 text-95">$500</div>
-                            <div class="col-2 text-secondary-d2">$500</div>
-                        </div>
-                    </div>
 
                     <div class="row border-b-2 brc-default-l2"></div>
 
