@@ -4,7 +4,8 @@
 <mapper namespace="WineXml">
 
 	<!-- 와인리스트 불러오기 -->
-	<select id="selectList" parameterType="com.javaex.vo.WineVo" resultType="com.javaex.vo.WineVo">
+	<select id="selectList" parameterType="com.javaex.vo.WineVo"
+		resultType="com.javaex.vo.WineVo">
 		<![CDATA[
 			select w.wine_no, 
 				   w.wine_name,
@@ -20,8 +21,8 @@
 		]]>
 	</select>
 
-	<!-- 와인리스트 타입별 정렬 -->
-	<select id="selectListByType" resultType="wine">
+	<!-- 와인리스트 검색 -->
+	<select id="searchByKeyword" resultType="wine">
 		<![CDATA[
 			select w.wine_no, 
 				   w.wine_name,
@@ -34,18 +35,77 @@
 			from wine w, wine_description d 
 			where w.wine_no = d.wine_no(+)
 		]]>
-		<if test="wineType=='1'">
+		<if test="wine_type=='1'">
 			AND w.wine_type = 1
 		</if>
-		<if test="wineType=='2'">
+		<if test="wine_type=='2'">
 			AND w.wine_type = 2
 		</if>
-		<if test="wineType=='3'">
+		<if test="wine_type=='3'">
 			AND w.wine_type = 3
 		</if>
+		<choose>
+			<when
+				test="search_type=='wine_name' and keyword != null and keyword != '' ">
+				AND w.wine_name like '%' || #{keyword} || '%'
+			</when>
+			<when
+				test="search_type=='wine_country' and keyword != null and keyword != '' ">
+				AND w.wine_country like '%' || #{keyword} || '%'
+			</when>
+		</choose>
 		<![CDATA[
 			order by w.reg_date desc
 		]]>
+
+	</select>
+
+	<!-- 와인리스트 정렬 -->
+	<select id="orderByWinelist" resultType="wine">
+		<![CDATA[
+			select w.wine_no,
+				   w.wine_name,
+				   w.wine_type,
+				   w.wine_country,
+				   w.reg_date,
+			       d.wine_price,
+				   d.wine_stock,
+				   d.wine_image
+			from wine w, wine_description d
+			where w.wine_no = d.wine_no(+)
+		]]>
+		<choose>
+			<when
+				test="order_by_type=='wine_name_up'">
+				order by w.wine_name 			
+			</when>
+			<when
+				test="order_by_type=='wine_name_down'">
+				<![CDATA[
+				order by w.wine_name desc
+				]]>			
+			</when>
+			<when
+				test="order_by_type=='wine_price_up'">
+				order by d.wine_price 			
+			</when>
+			<when
+				test="order_by_type=='wine_price_down'">
+				<![CDATA[
+				order by d.wine_price desc
+				]]>			
+			</when>
+			<when
+				test="order_by_type=='reg_date_up'">
+				order by w.reg_date 			
+			</when>
+			<when
+				test="order_by_type=='reg_date_down'">
+				<![CDATA[
+				order by w.reg_date desc
+				]]>			
+			</when>
+		</choose>
 		
 	</select>
 

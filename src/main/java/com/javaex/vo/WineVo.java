@@ -9,18 +9,11 @@ public class WineVo {
 	private int wine_price;				// 와인가격
 	private int wine_stock;				// 와인재고
 	private String wine_image;			// 와인이미지
-	private WineDescriptionVo wineDescriptionVo;
+	private String search_type;			// 검색 타입
+	private String keyword;				// 검색 키워드
+	private String order_by_type;		// 정렬 타입
 	
 	public WineVo() {}
-	
-	
-
-	public WineVo(WineDescriptionVo wineDescriptionVo) {
-		super();
-		this.wineDescriptionVo = wineDescriptionVo;
-	}
-
-
 
 	public WineVo(int wine_no, String wine_name, int wine_type, String wine_country, String reg_date) {
 		super();
@@ -42,6 +35,17 @@ public class WineVo {
 		this.wine_price = wine_price;
 		this.wine_stock = wine_stock;
 		this.wine_image = wine_image;
+	}
+	
+	public WineVo(String search_type, String keyword) {
+		super();
+		this.search_type = search_type;
+		this.keyword = keyword;
+	}
+	
+	public WineVo(String order_by_type) {
+		super();
+		this.order_by_type = order_by_type;
 	}
 
 	public int getWine_no() {
@@ -110,29 +114,40 @@ public class WineVo {
 		this.wine_image = wine_image;
 	}
 	
+
+	public String getSearch_type() {
+		return search_type;
+	}
+
+	public void setSearch_type(String search_type) {
+		this.search_type = search_type;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 	
 
-	public WineDescriptionVo getWineDescriptionVo() {
-		return wineDescriptionVo;
+	public String getOrder_by_type() {
+		return order_by_type;
 	}
 
-
-
-	public void setWineDescriptionVo(WineDescriptionVo wineDescriptionVo) {
-		this.wineDescriptionVo = wineDescriptionVo;
+	public void setOrder_by_type(String order_by_type) {
+		this.order_by_type = order_by_type;
 	}
-
-
 
 	@Override
 	public String toString() {
 		return "WineVo [wine_no=" + wine_no + ", wine_name=" + wine_name + ", wine_type=" + wine_type
 				+ ", wine_country=" + wine_country + ", reg_date=" + reg_date + ", wine_price=" + wine_price
-				+ ", wine_stock=" + wine_stock + ", wine_image=" + wine_image + "]";
+				+ ", wine_stock=" + wine_stock + ", wine_image=" + wine_image + ", search_type=" + search_type
+				+ ", keyword=" + keyword + ", order_by_type=" + order_by_type + "]";
 	}
 
-	
-	
 	
 	
 }

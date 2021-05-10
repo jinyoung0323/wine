@@ -23,6 +23,7 @@
 	<main>
 
 		<section class="py-5 text-center container">
+
 			<div class="row py-lg-5">
 				<div class="col-lg-6 col-md-8 mx-auto">
 					<h1 class="fw-light">Album example</h1>
@@ -31,21 +32,40 @@
 						and sweet, but not too short so folks don’t simply skip over it
 						entirely.</p>
 
-					<form id="type_form" action="/wine/wineType" method="post">
-						<select name="wineType">
-							<option value="red">레드와인</option>
-							<option value="white">화이트와인</option>
-							<option value="rose">로제와인</option>
-						</select> <input type="submit" value="정렬">
+					<form id="type_form" action="/wine/wineSearch" method="post">
+						<select name="wine_type">
+							<option selected>와인종류</option>
+							<option value="1">레드</option>
+							<option value="2">화이트</option>
+							<option value="3">로제</option>
+						</select> <select name="search_type">
+							<option selected>검색</option>
+							<option value="wine_name">이름</option>
+							<option value="wine_country">생산국</option>
+						</select> <input type="text" id="keyword" name="keyword" value="">
+						<input type="submit" value="검색">
 					</form>
-
 				</div>
+
 			</div>
 		</section>
 
 		<div class="album py-5 bg-light">
-			<div class="container">
 
+			<div class="container">
+				<form id="order_by_form" action="/wine/orderByWinelist"
+					method="post">
+					<select name="order_by_type">
+						<option selected>정렬기준</option>
+						<option value="wine_name_up">가나다↑</option>
+						<option value="wine_name_down">가나다↓</option>
+						<option value="wine_price_up">낮은가격순</option>
+						<option value="wine_price_down">높은가격순</option>
+						<option value="reg_date_up">등록순</option>
+						<option value="reg_date_down">최신순</option>
+					</select> 
+					<input type="submit" value="정렬">
+				</form>
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 					<div class="col">
 
@@ -84,16 +104,16 @@
 
 				</div>
 			</div>
-
-			<div class="text-center">
-				<ul class="pagination">
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-				</ul>
-			</div>
+		</div>
+		<div class="text-center">
+			<ul class="pagination">
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+			</ul>
+		</div>
 	</main>
 
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>

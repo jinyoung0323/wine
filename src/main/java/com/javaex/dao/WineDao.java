@@ -23,20 +23,30 @@ public class WineDao {
 		return sqlSession.selectList("WineXml.selectList");
 	}
 
-	// 와인리스트 타입별 불러오기
-	public List<WineVo> getList(int wine_type) {
+	// 와인 검색
+	public List<WineVo> getSearchByKeyword(String search_type, String keyword) {
 		System.out.println("----> sqlSession.selectList()");
 		System.out.println(sqlSession);
+		WineVo vo = new WineVo(search_type, keyword);
 
-		return sqlSession.selectList("WineXml.selectListByType", wine_type);
+		return sqlSession.selectList("WineXml.searchByKeyword", vo);
+	}
+
+	// 와인리스트 불러오기
+	public List<WineVo> getOrderByWinelist(String order_by_type) {
+		System.out.println("----> sqlSession.selectList()");
+		System.out.println(sqlSession);
+		WineVo wineVo = new WineVo(order_by_type);
+
+		return sqlSession.selectList("WineXml.orderByWinelist", wineVo);
 	}
 
 	// 와인 추가
-	public int insert(WineDescriptionVo wdVo) {
+//	public int insert(WineDescriptionVo wdVo) {
 //		System.out.println(wineVo);
-		WineVo wineVo = new WineVo(wdVo);
-		return sqlSession.insert("WineXml.insert", wineVo);
-	}
+//		WineVo wineVo = new WineVo(wdVo);
+//		return sqlSession.insert("WineXml.insert", wineVo);
+//	}
 
 	// 와인 삭제
 	public void delete(WineVo wineVo) {
