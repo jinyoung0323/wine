@@ -7,13 +7,10 @@
 	</typeAliases>
 
 	<mappers>
-<<<<<<< HEAD
 		<mapper resource="mybatis/mappers/users.xml" />
 		<mapper resource="mybatis/mappers/cart.xml" />
-=======
 		<mapper resource="mybatis/mappers/user.xml" />
 		<mapper resource="mybatis/mappers/wine.xml" />
->>>>>>> branch 'develop' of https://github.com/jinyoung0323/wine.git
 	</mappers>
 
 </configuration>

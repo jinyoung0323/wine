@@ -2,11 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<<<<<<< HEAD
-<%@ page import="com.javaex.repository.CartDao"%>
+<%@ page import="com.javaex.dao.CartDao"%>
 <%@ page import="com.javaex.vo.CartVo"%>
-=======
->>>>>>> branch 'develop' of https://github.com/jinyoung0323/wine.git
 
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
