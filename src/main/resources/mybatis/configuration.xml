@@ -6,6 +6,7 @@
 
 	<mappers>
 		<mapper resource="mybatis/mappers/users.xml" />
+		<mapper resource="mybatis/mappers/cart.xml" />
 	</mappers>
 	
 </configuration>
