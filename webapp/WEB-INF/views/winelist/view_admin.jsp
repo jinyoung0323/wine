@@ -27,7 +27,7 @@
     
 
     <!-- Bootstrap core CSS -->
-<link href="/wine/assets/resources/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/wine/assets/bootstrap_assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!--    <style>-->
 <!--      .bd-placeholder-img {-->
@@ -56,22 +56,6 @@
   <main class="container">
   
   <div class="row mb-2">
-    <!-- <div class="col-md-6">
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary">상품정보</strong>
-          <input type="text" name="wineName" placeholder="상품명">
-          <div class="mb-1 text-muted">
-          <input type="text" name="" placeholder="생산국가"></div>
-          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="stretched-link">Continue reading</a>
-        </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-        </div>
-      </div>
-     </div> -->
      
      <div class="col-md-2">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -84,26 +68,41 @@
      </div>
      
      <div class="col-md-10">
+             <form action="/wine/wineInsert" method="post">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div>
+
           <p><strong class="d-inline-block mb-2 text-primary">상품정보<br></strong></p>
           상품명&nbsp;&nbsp;&nbsp; 
-          <input type="text" name="wineName" placeholder="상품명"><br><br>
+          <input type="text" name="wine_name" placeholder="상품명">&emsp;&emsp;&emsp;&emsp;
+          상품종류
+         <select name="wine_type">
+			<option value="1">레드와인</option>
+			<option value="2">화이트와인</option>
+			<option value="3">로제와인</option>
+		</select><br><br>
           생산국가  
-          <input type="text" name="wineCountry" placeholder="생산국가"><br><br>
+          <input type="text" name="wine_country" placeholder="생산국가">&emsp;&emsp;&emsp;&emsp;
           제조회사
-          <input type="text" name="wineCompany" placeholder="제조회사"><br><br>
+          <input type="text" name="wine_company" placeholder="제조회사"><br><br>
           알콜도수 
-          <input type="text" name="wineAlcohol" placeholder="알콜도수"><br><br>
+          <input type="text" name="wine_alcohol" placeholder="알콜도수">&emsp;&emsp;&emsp;&emsp;
           판매가격
-          <input type="text" name="winePrice" placeholder="판매가격"><br><br>
-          
+          <input type="text" name="wine_price" placeholder="판매가격"><br><br>
+          상품재고
+          <input type="text" name="wine_stock" placeholder="상품재고"><br><br>
+          상세설명        
+          <textarea rows="10" cols="80"></textarea><br>
+
           <div class="mb-1 text-muted">
          </div>
          
+         <button>등록</button>
+       
         </div>
        
       </div>
+        </form>
      </div>
    
 <!--     <div class="col-md-6">
@@ -126,7 +125,7 @@
   </main>
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 
-	<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/wine/assets/bootstrap_assets/dist/js/bootstrap.bundle.min.js"></script>
     
   </body>
 </html>

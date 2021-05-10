@@ -3,14 +3,16 @@ package com.javaex.vo;
 
 public class UserVo {
 
-	private String email;
-	private String nickName;
-	private int userNo;
-	private String password;
-	private String phoneNo;
-	private String birth;
-	private int grade;
-	private String address;
+	private String email;			// 이메일
+	private String nickName;		// 닉네임
+	private int userNo;				// 사용자 번호
+	private String password;		// 비밀번호
+	private String phoneNo;			// 휴대폰번호(01011112222)
+	private String birth;			// 생년월일(YYYYMMDD)
+	private int grade;				// 사용자, 관리자 
+	private String address;			// 주소
+	
+	public UserVo() {}
 	
 	public UserVo(String email, String nickName, int userNo, String password, String phoneNo, String birth, int grade,
 			String address) {
@@ -25,9 +27,7 @@ public class UserVo {
 		this.address = address;
 	}
 	
-	public UserVo() {
-		
-	}
+	
 	
 	public String getEmail() {
 		return email;
@@ -77,5 +77,13 @@ public class UserVo {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	@Override
+	public String toString() {
+		return "UserVo [email=" + email + ", nickName=" + nickName + ", userNo=" + userNo + ", password=" + password
+				+ ", phoneNo=" + phoneNo + ", birth=" + birth + ", grade=" + grade + ", address=" + address + "]";
+	}
+	
+	
 	
 }
