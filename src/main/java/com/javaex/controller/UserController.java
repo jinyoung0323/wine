@@ -7,37 +7,85 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.javaex.dao.UserDao;
 import com.javaex.vo.UserVo;
 
+@RequestMapping("/user")
 @Controller
 public class UserController {
 
 	@Autowired
 	UserDao userDao;
 
-	// 로그인
-	@RequestMapping(value = "login")
-	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
-		UserVo authUser = userDao.login(userVo);
+	// 회원가입 폼
+		@RequestMapping(value="/joinform", method=RequestMethod.GET)
+		public String joinForm() {
+			return "/user/joinform";
+		}
+		
+		// 회원가입
+		@RequestMapping(value="/join")
+		public String join(@ModelAttribute UserVo userVo) {
+			System.out.println( "join user : "+ userVo );
+			userDao.insert(userVo);
+			return "/user/joinsuccess";
+		}
+		
+		// 로그인폼
+		@RequestMapping(value="/loginform", method=RequestMethod.GET)
+		public String loginForm() {
+			return "/user/loginform";
+		}
+		
+		// 로그인
+		@RequestMapping(value="/login", method=RequestMethod.POST)
+		public String login(@ModelAttribute UserVo userVo, HttpSession session) {
+			UserVo User = userDao.login(userVo);
+		
+			//세션처리
+			if(User != null) { //성공
+				session.setAttribute("User", User);
+				System.out.println("login user : "+User);
+				
+				return "redirect:/";
+			}else { //실패
+				return "redirect:/";
+			}
+			
+		}
 
-		// 세션처리
-		if (authUser != null) {
-			session.setAttribute("authUser", authUser);
-			System.out.println(authUser);
-			return "redirect:/";
-		} else {
+		// 로그아웃
+		@RequestMapping(value="/logout", method=RequestMethod.GET)
+		public String logout(HttpSession session) {
+			session.removeAttribute("User");
+			session.invalidate();
+			System.out.println( "logout user");
+			
 			return "redirect:/";
 		}
-	}
-
-	// 로그인 되어 있는 정보를 가져온다.
-	protected UserVo getAuthUser(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-
-		return authUser;
-	}
+		
+		// 사용자 수정폼
+		@RequestMapping(value="/modifyform", method=RequestMethod.GET)
+		public String modifyform() {
+			return "/user/modifyform";
+		}
+		
+		// 사용자 수정
+		@RequestMapping(value="/modify", method=RequestMethod.POST)
+		public String modify(@ModelAttribute UserVo userVo, HttpSession session) {
+			userDao.update(userVo);
+		      
+		      UserVo User = userDao.login(userVo);
+		      //세션처리
+		      if(User != null) { //성공
+		         session.setAttribute("User", User);
+		         System.out.println( "modify user : "+ userVo );
+		         return "redirect:/";
+		      }else { //실패
+		         return "redirect:/";
+		      }
+		}
 
 }

@@ -11,11 +11,27 @@ public class UserDao {
 
 	@Autowired
 	private SqlSession sqlSession;
+
+	// 회원가입
+	public int insert(UserVo vo) {
+		System.out.println(vo);
+		return sqlSession.insert("UserXml.insert", vo);
+	}
 	
-	//login
+	// 로그인
 	public UserVo login(UserVo userVo) {
-		System.out.println("login");
 		return sqlSession.selectOne("UserXml.login", userVo);
 	}
 
+	// 수정
+	public int update(UserVo userVo) {
+		System.out.println(userVo);
+		return sqlSession.update("UserXml.update", userVo);
+	}
+
+	public UserVo searchemail(UserVo userVo) {
+		System.out.println(userVo);
+		
+		return sqlSession.selectOne("UserXml.doublecheck", userVo);
+	}
 }

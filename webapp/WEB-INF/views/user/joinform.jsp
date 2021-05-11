@@ -5,7 +5,6 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>회원가입 Form</title>
-
 </head>
 <body>
 
@@ -13,39 +12,36 @@
 		
 		<!-- header -->
 		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
-				
-			
+						
 		<head>
-  <meta charset="utf-8">
-  <title>Checkout example · Bootstrap v5.0</title>
+		  <meta charset="utf-8">
+		  <title>Checkout example · Bootstrap v5.0</title>
+		
+		  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
 
-  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
+		  <!-- Bootstrap core CSS -->
+		  <link href="/wine/assets/bootstrap_assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
+		  <style>
+		    .bd-placeholder-img {
+		      font-size: 1.125rem;
+		      text-anchor: middle;
+		      -webkit-user-select: none;
+		      -moz-user-select: none;
+		      user-select: none;
+		    }
+		
+		    @media (min-width: 768px) {
+		      .bd-placeholder-img-lg {
+		        font-size: 3.5rem;
+		      }
+		    }
+		  </style>
 
-
-  <!-- Bootstrap core CSS -->
-  <link href="/wine/assets/bootstrap_assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
-
-
-  <!-- Custom styles for this template -->
-  <link href="form-validation.css" rel="stylesheet">
-</head>
+		  <!-- Custom styles for this template -->
+		  <link href="form-validation.css" rel="stylesheet">
+		</head>
+		
 <body class="bg-light">
 
 <div class="container">
@@ -57,89 +53,66 @@
     </div>
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Billing address</h4>
-        <form class="needs-validation" novalidate>
+        <form class="needs-validation" novalidate id="join-form" name="actionName" value="join" method="post" action="<%=request.getContextPath() %>/user/join">
           <div class="row g-3">
-            <div class="col-sm-6">
-              <label for="firstName" class="form-label">First name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Valid first name is required.
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <label for="lastName" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Valid last name is required.
-              </div>
-            </div>
-
-            <div class="col-12">
-              <label for="username" class="form-label">Username</label>
-              <div class="input-group has-validation">
-                <span class="input-group-text">@</span>
-                <input type="text" class="form-control" id="username" placeholder="Username" required>
-                <div class="invalid-feedback">
-                  Your username is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12">
-              <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+          
+         	<div class="col-12">
+              <label for="email" class="form-label">이메일 <span class="text-muted"></span></label>
+              <input id="email" name="email" type="text" class="form-control" placeholder="wine@example.com">
               <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
               </div>
             </div>
-
+            
+            <div class="col-sm-6">
+              <label for="nick_name" class="form-label">이름</label>
+              <input id="nick_name" name="nick_name" type="text" class="form-control" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid name is required.
+              </div>
+            </div>
+            
+            <div class="col-sm-6">
+              <label class="form-label">비밀번호</label>
+              <input id="password" type="password" class="form-control" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid password is required.
+              </div>
+            </div>
+            
+            <div class="col-sm-6">
+              <label for="phone_no" class="form-label">전화번호</label>
+              <input id="phone_no" name="phone_no" type="text" class="form-control" placeholder="01012341234" value="" required>
+              <div class="invalid-feedback">
+                Valid phone number is required.
+              </div>
+            </div>
+            
+            <div class="col-sm-6">
+              <label for="birth" class="form-label">생년월일</label>
+              <input id="birth" name="birth" type="text" class="form-control" placeholder="YYYYMMDD" value="" required>
+              <div class="invalid-feedback">
+                Valid birth is required.
+              </div>
+            </div>
+            
+            <div class="col-sm-6">
+            	<fieldset>
+	              <legend>등급</legend>
+	              <input type="radio" name="grade" value="1" checked="checked"><label>user</label>
+	              <input type="radio" name="grade" value="2" ><label>admin</label>
+	            </fieldset>  
+            </div>
+            
             <div class="col-12">
               <label for="address" class="form-label">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+              <input id="address" name="address" type="text" class="form-control" placeholder="" required>
               <div class="invalid-feedback">
                 Please enter your shipping address.
               </div>
             </div>
 
-            <div class="col-12">
-              <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-            </div>
-
-            <div class="col-md-5">
-              <label for="country" class="form-label">Country</label>
-              <select class="form-select" id="country" required>
-                <option value="">Choose...</option>
-                <option>United States</option>
-              </select>
-              <div class="invalid-feedback">
-                Please select a valid country.
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <label for="state" class="form-label">State</label>
-              <select class="form-select" id="state" required>
-                <option value="">Choose...</option>
-                <option>California</option>
-              </select>
-              <div class="invalid-feedback">
-                Please provide a valid state.
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <label for="zip" class="form-label">Zip</label>
-              <input type="text" class="form-control" id="zip" placeholder="" required>
-              <div class="invalid-feedback">
-                Zip code required.
-              </div>
-            </div>
-          </div>
-
-
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+          <button class="w-100 btn btn-primary btn-lg" type="submit">가입하기</button>
         </form>
       </div>
     </div>

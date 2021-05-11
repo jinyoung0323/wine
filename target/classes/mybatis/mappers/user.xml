@@ -3,20 +3,80 @@
 
 <mapper namespace="UserXml">
 
-	<!-- 로그인 -->
-	<select id="login" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo"> 
-		<![CDATA[	
-		SELECT  EMAIL, 
-				NICK_NAME, 
-				USER_NO, 
-				PASSWORD, 
-				PHONE_NO,
-				BIRTH, 
-				GRADE, 
-				ADDRESS 
-		FROM USERS
-		WHERE EMAIL = #{EMAIL}
-		AND PASSWORD = #{PASSWORD}
+	<!-- 쿼리문 작성 -->
+	<!-- 사용자 리스트 불러오기 -->
+	<select id="selectList" resultType="user">
+		select email, nick_name, user_no, password, phone_no, birth, grade, address
+		  from users
+	  order by no
+
+	</select>
+	
+	<!-- 사용자 추가 -->
+	<insert id="insert" parameterType="com.javaex.vo.UserVo">
+		<![CDATA[
+			insert into users
+		    values (#{email}, #{nick_name}, 
+		   			 seq_users_no.nextval, 
+					#{password}, #{phone_no}, 
+					#{birth}, #{grade}, #{address})
+		]]>
+	</insert>
+	
+	<!-- email로 회원정보 가져오기 -->
+	<select id="selectUserById" parameterType="string"  resultType="com.javaex.vo.UserVo">
+		<![CDATA[
+			select user_no, email, nick_name 
+			  from users 
+			 where email = #{email} 
+		]]>
+	</select>
+	
+	<!-- 로그인용(email,password 로 회원정보 가져오기 -->
+	<select id="login" parameterType="com.javaex.vo.UserVo"  resultType="com.javaex.vo.UserVo">
+		<![CDATA[
+			select email, nick_name, user_no, password, phone_no, birth, grade, address 
+			  from users 
+			 where email = #{email} 
+			   and password = #{password}
+		]]>
+	</select>
+
+
+	<!-- email 로 usrNo 가져오기 -->
+	<select id="selectUserNoById" parameterType="string"  resultType="int">
+		<![CDATA[
+			select user_no 
+			  from users 
+			 where email = #{email} 
+		]]>
+	</select>
+	
+	<!-- 사용자 삭제 -->
+	<delete id="delete" parameterType="com.javaex.vo.UserVo"> 
+		delete from users 
+		 where user_no = #{user_no} 
+	       and password = #{password} 
+	</delete>
+	
+	<!-- 사용자 수정 -->
+	<update id="update" parameterType="com.javaex.vo.UserVo">
+		<![CDATA[
+			update users
+			   set nick_name = #{nick_name}, 
+			       password = #{password},
+			       phone_no = #{phone_no},
+			       address = #{address}
+			 where user_no = #{user_no}
+		]]>
+	</update>
+
+	<!-- email 중복검색 -->
+	<select id="doublecheck" parameterType="string"  resultType="string">
+		<![CDATA[
+			select email 
+			  from users 
+			 where email = #{email} 
 		]]>
 	</select>
 </mapper>
