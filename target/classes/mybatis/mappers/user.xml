@@ -71,12 +71,4 @@
 		]]>
 	</update>
 
-	<!-- email 중복검색 -->
-	<select id="doublecheck" parameterType="string"  resultType="string">
-		<![CDATA[
-			select email 
-			  from users 
-			 where email = #{email} 
-		]]>
-	</select>
 </mapper>
