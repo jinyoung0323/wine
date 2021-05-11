@@ -2,11 +2,11 @@ package com.javaex.vo;
 
 public class CartVo {
 	
-	private int cart_no;
-	private String email;
-	private int wine_no;
-	private String wine_name;
-	private int wine_price;
+	private int cart_no;		// 장바구니 번호
+	private String email;		// 이메일
+	private int wine_no;		// 와인번호
+	private String wine_name;	// 와인이름
+	private int wine_price;		// 와인가격
 
 	public String getWine_name() {
 		return wine_name;

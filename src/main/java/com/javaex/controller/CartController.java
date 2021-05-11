@@ -11,7 +11,7 @@ import com.javaex.dao.CartDao;
 public class CartController {
 	
 	@Autowired
-	CartDao cartDao;
+	private CartDao cartDao;
 	
 	@RequestMapping("/cart")
 	public ModelAndView getList(ModelAndView mav) {

@@ -1,7 +1,7 @@
 <%@ page isELIgnored="false" language="java"
 	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <%@page import="com.javaex.vo.WineVo"%>
@@ -55,7 +55,7 @@
 		<div class="album py-5 bg-light">
 
 			<div class="container">
-				<form id="order_by_form" action="/wine/orderByWinelist"
+				<form class="form-inline align-self-end" id="order_by_form" action="/wine/orderByWinelist"
 					method="post">
 					<select name="order_by_type">
 						<option selected>정렬기준</option>
@@ -65,8 +65,7 @@
 						<option value="wine_price_down">높은가격순</option>
 						<option value="reg_date_up">등록순</option>
 						<option value="reg_date_down">최신순</option>
-					</select> 
-					<input type="submit" value="정렬">
+					</select> <input type="submit" value="정렬">
 				</form>
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 					<div class="col">
@@ -96,8 +95,11 @@
 									</p>
 									<p class="card-text">와인생산국 : ${winelist.wine_country}</p>
 									<p class="card-text">등록일 : ${winelist.reg_date}</p>
-									<p class="card-text">와인가격 : 
-									<fmt:formatNumber value="${winelist.wine_price}" pattern="#,###" />원
+									<p class="card-text">
+										와인가격 :
+										<fmt:formatNumber value="${winelist.wine_price}"
+											pattern="#,###" />
+										원
 									</p>
 									<p class="card-text">와인재고 : ${winelist.wine_stock}개</p>
 								</div>
@@ -111,11 +113,20 @@
 		</div>
 		<div class="text-center">
 			<ul class="pagination">
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
+				<c:if test="${pageMaker.prev}">
+					<li><a
+						href="/wine/${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+				</c:if>
+
+				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
+					var="idx">
+					<li><a href="/wine/${pageMaker.makeQuery(idx)}">${idx}</a></li>
+				</c:forEach>
+
+				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					<li><a
+						href="/wine/${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+				</c:if>
 			</ul>
 		</div>
 	</main>

@@ -8,11 +8,15 @@ public class UserVo {
 	private String password;		// 사용자 비밀번호
 	private String phone_no;		// 사용자 전화번호
 	private String birth;			// 사용자 생년월일
-	private int grade;		// 사용자 등급
+	private int grade;				// 사용자 등급
 	private String address;			// 사용자 주소
 	
+	/* 생성자 */
+	
+	// 디폴트
 	public UserVo() {}
 
+	// 전체 생성자
 	public UserVo(int user_no, String email, String nick_name,  String password, String phone_no, String birth, int grade, String address	) {
 		super();
 		this.user_no = user_no;
@@ -25,6 +29,7 @@ public class UserVo {
 		this.address = address;
 	}
 	
+	// address(null 허용)를 제외한 전체 생성자
 	public UserVo(int user_no, String email, String nick_name,  String password, String phone_no, String birth, int grade) {
 		super();
 		this.user_no = user_no;
@@ -36,6 +41,7 @@ public class UserVo {
 		this.grade = grade;
 	}
 	
+	// user_no(sequence)를 제외한 전체 생성자
 	public UserVo(String email,	String nick_name, String password, String phone_no, String birth, int grade, String address	) {
 		super(); 
 		this.email = email;
@@ -61,7 +67,6 @@ public class UserVo {
 		this.nick_name = nick_name;
 		this.password = password;
 		this.phone_no = phone_no;
-		this.birth = birth;
 		this.address = address;
 	}
 

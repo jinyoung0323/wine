@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javaex.dao.WineDao;
+import com.javaex.vo.Criteria;
+import com.javaex.vo.PageMaker;
 import com.javaex.vo.WineDescriptionVo;
 import com.javaex.vo.WineVo;
 
@@ -27,12 +29,13 @@ public class WineController {
 
 		mav.addObject("wineList", wineDao.getSearchByKeyword(search_type, keyword));
 		System.out.println(wineDao.getSearchByKeyword(search_type, keyword));
+		
 		mav.setViewName("main/index");
 
 		return mav;
 	}
 
-	// 와인 리스트 불러오기
+	// 와인 리스트 정렬
 	@RequestMapping(value = "/orderByWinelist")
 	public ModelAndView orderList(ModelAndView mav, String order_by_type) {
 
@@ -50,22 +53,16 @@ public class WineController {
 		return "winelist/view_admin";
 	}
 
-	// 와인 등록
-	@RequestMapping(value = "/wineInsert", method = RequestMethod.POST)
-	public String regist(@ModelAttribute WineVo wineVo) {
-		System.out.println("addWine");
-
-		wineDao.insert(wineVo);
-
-		return "winelist/view_admin";
-	}
-
-	// 와인 삭제폼
-	@RequestMapping(value = "/wineDeleteform")
-	public String deleteform() {
-		System.out.println("wineDeleteform");
-		return "winelist/wineDeleteform";
-	}
+//	// 와인 등록
+//	@RequestMapping(value = "/wineInsert", method = RequestMethod.POST)
+//	public String regist(@ModelAttribute WineDescriptionVo wdVo) {
+//		System.out.println("addWine");
+//		System.out.println(wdVo.toString());
+//
+//		wineDao.insert(wdVo);
+//
+//		return "winelist/view_admin";
+//	}
 
 	// 와인 삭제
 	@RequestMapping(value = "/wineDelete", method = RequestMethod.POST)

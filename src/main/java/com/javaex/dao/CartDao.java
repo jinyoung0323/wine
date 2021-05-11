@@ -14,7 +14,7 @@ public class CartDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	// 방명록 리스트 불러오기
+	// 장바구니 리스트 불러오기
 	public List<CartVo> getList() {
 		System.out.println("----> sqlSession.selectList()");
 		System.out.println(sqlSession);

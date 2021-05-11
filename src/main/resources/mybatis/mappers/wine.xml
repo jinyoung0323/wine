@@ -3,6 +3,34 @@
 
 <mapper namespace="WineXml">
 
+	<!-- 와인 총 갯수 -->
+	<select id="listCount" resultType="int">
+		select count(wine_no) from wine where wine_no > 0
+	</select>
+	
+	<!-- 와인리스트 불러오기 -->
+	<select id="listPage" resultType="com.javaex.vo.WineVo"
+		parameterType="com.javaex.vo.Criteria">
+	<![CDATA[
+		select w.wine_no, 
+			   w.wine_name,
+			   w.wine_type, 
+			   w.wine_country, 
+			   w.reg_date, 
+			   d.wine_price, 
+			   d.wine_stock,
+			   d.wine_image		   
+      	from (
+        	select row_number() over (order by e.wine_no desc) as num, 
+        		   e.*
+         	from wine e
+      	) w, wine_description d
+      	where num >= #{rowStart} and num <= #{rowEnd}
+      	and w.wine_no = d.wine_no(+)
+      	order by w.wine_no desc
+		]]>
+	</select>
+
 	<!-- 와인리스트 불러오기 -->
 	<select id="selectList" parameterType="com.javaex.vo.WineVo"
 		resultType="com.javaex.vo.WineVo">
