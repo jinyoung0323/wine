@@ -59,7 +59,7 @@
 
 			<div class="col-md-3 text-end">
 				<c:choose>
-					<c:when test="${authUser == null }">
+					<c:when test="${User == null }">
 						<!-- 로그인 전 -->
 						<li><a href="/wine/user/loginform">로그인</a></li>
 						<li><a href="/wine/user/joinform">회원가입</a></li>
@@ -72,15 +72,15 @@
 						-->
 						
 						<!-- 일반 사용자 -->
-						<c:if test="${authUser.grade == 1}">
-							<li>${authUser.name }님안녕하세요^^;</li>
+						<c:if test="${User.grade == 1}">
+							<li>${User.nick_name }님안녕하세요^^;</li>
 							<li><a href="/wine/user/modifyform">회원정보수정</a></li>
 							<li><a href="/wine/user/logout">로그아웃</a></li>
 						</c:if>
 						
 						<!-- 관리자 -->
-						<c:if test="${authUser.grade == 2}">
-							<li>${authUser.name }님안녕하세요^^;</li>
+						<c:if test="${User.grade == 2}">
+							<li>${User.nick_name }님안녕하세요^^;</li>
 							<li><a href="/wine/winelist/view_admin">와인등록</a></li>
 							<li><a href="/wine/user/logout">로그아웃</a></li>
 						</c:if>
