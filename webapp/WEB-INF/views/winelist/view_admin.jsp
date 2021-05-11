@@ -92,7 +92,7 @@
           상품재고
           <input type="text" name="wine_stock" placeholder="상품재고"><br><br>
           상세설명        
-          <textarea rows="10" cols="80"></textarea><br>
+          <textarea rows="10" cols="80" name="wine_description"></textarea><br>
 
           <div class="mb-1 text-muted">
          </div>

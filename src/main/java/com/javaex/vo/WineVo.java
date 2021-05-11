@@ -1,5 +1,7 @@
 package com.javaex.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class WineVo {
 	private int wine_no;				// 와인번호(PK)
 	private String wine_name;			// 와인이름
@@ -12,8 +14,38 @@ public class WineVo {
 	private String search_type;			// 검색 타입
 	private String keyword;				// 검색 키워드
 	private String order_by_type;		// 정렬 타입
+	private String wine_company;			// 제조회사
+	private int wine_alcohol;			// 알코올도수
+	public String getWine_company() {
+		return wine_company;
+	}
+	public void setWine_company(String wine_company) {
+		this.wine_company = wine_company;
+	}
+	public int getWine_alcohol() {
+		return wine_alcohol;
+	}
+	public void setWine_alcohol(int wine_alcohol) {
+		this.wine_alcohol = wine_alcohol;
+	}
+	public String getWine_description() {
+		return wine_description;
+	}
+	public void setWine_description(String wine_description) {
+		this.wine_description = wine_description;
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
+	private String wine_description;		// 와인 상세설명
+	private MultipartFile file;			// 파일 업로드 위한 변수설정
 	
 	public WineVo() {}
+	public WineVo(WineDescriptionVo wdVo) {}
 
 	public WineVo(int wine_no, String wine_name, int wine_type, String wine_country, String reg_date) {
 		super();
@@ -88,8 +120,6 @@ public class WineVo {
 		this.reg_date = reg_date;
 	}
 	
-	
-
 	public int getWine_price() {
 		return wine_price;
 	}

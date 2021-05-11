@@ -114,7 +114,7 @@
 		<![CDATA[	
 			INSERT ALL
 			INTO wine VALUES(seq_wine_no.nextval, #{wine_name}, #{wine_type}, #{wine_country}, sysdate)
-			INTO wine_Description VALUES(seq_wine_no.nextval, #{wine_company}, #{wine_alchole}, #{wine_price}, #{wine_stock}, #{wine_image}, #{wine_description})
+			INTO wine_Description VALUES(seq_wine_no.nextval, #{wine_company}, #{wine_alcohol}, #{wine_price}, #{wine_stock}, #{wine_image}, #{wine_description})
 			SELECT * FROM DUAL	
 		]]>
 	</insert>

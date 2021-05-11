@@ -42,11 +42,10 @@ public class WineDao {
 	}
 
 	// 와인 추가
-//	public int insert(WineDescriptionVo wdVo) {
-//		System.out.println(wineVo);
-//		WineVo wineVo = new WineVo(wdVo);
-//		return sqlSession.insert("WineXml.insert", wineVo);
-//	}
+	public int insert(WineVo wineVo) {
+		System.out.println("wineinsert");
+		return sqlSession.insert("WineXml.insert", wineVo);
+	}
 
 	// 와인 삭제
 	public void delete(WineVo wineVo) {
