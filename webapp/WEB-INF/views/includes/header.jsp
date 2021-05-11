@@ -61,8 +61,8 @@
 				<c:choose>
 					<c:when test="${User == null }">
 						<!-- 로그인 전 -->
-						<li><a href="/wine/user/loginform">로그인</a></li>
-						<li><a href="/wine/user/joinform">회원가입</a></li>
+						<li><a href="<%=request.getContextPath() %>/user/loginform">로그인</a></li>
+						<li><a href="<%=request.getContextPath() %>/user/joinform">회원가입</a></li>
 					</c:when>
 					<c:otherwise>
 						<!--
@@ -73,16 +73,16 @@
 						
 						<!-- 일반 사용자 -->
 						<c:if test="${User.grade == 1}">
-							<li>${User.nick_name }님안녕하세요^^;</li>
-							<li><a href="/wine/user/modifyform">회원정보수정</a></li>
-							<li><a href="/wine/user/logout">로그아웃</a></li>
+							<li>${User.nick_name }님 안녕하세요^^;</li>
+							<li><a href="<%=request.getContextPath() %>/user/modifyform">회원정보수정</a></li>
+							<li><a href="<%=request.getContextPath() %>/user/logout">로그아웃</a></li>
 						</c:if>
 						
 						<!-- 관리자 -->
 						<c:if test="${User.grade == 2}">
-							<li>${User.nick_name }님안녕하세요^^;</li>
-							<li><a href="/wine/winelist/view_admin">와인등록</a></li>
-							<li><a href="/wine/user/logout">로그아웃</a></li>
+							<li>${User.nick_name } 관리자님 안녕하세요^^;</li>
+							<li><a href="<%=request.getContextPath() %>/winelist/view_admin">와인등록</a></li>
+							<li><a href="<%=request.getContextPath() %>/user/logout">로그아웃</a></li>
 						</c:if>
 					</c:otherwise>
 				</c:choose>
