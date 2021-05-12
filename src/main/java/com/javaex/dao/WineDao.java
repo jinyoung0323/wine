@@ -56,4 +56,13 @@ public class WineDao {
 		sqlSession.delete("WineXml.delete", wineVo);
 	}
 
+	// 와인 상세페이지
+	public WineVo viewDetail(int wine_no) {
+		System.out.println("----> sqlSession.selectList()");
+		System.out.println(sqlSession);
+		System.out.println("wine_no : " + wine_no);
+
+		return sqlSession.selectOne("WineXml.selectById", wine_no);
+	}
+
 }

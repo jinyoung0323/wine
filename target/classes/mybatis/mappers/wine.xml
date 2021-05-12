@@ -5,9 +5,10 @@
 
 	<!-- 와인 총 갯수 -->
 	<select id="listCount" resultType="int">
-		select count(wine_no) from wine where wine_no > 0
+		select count(wine_no) from
+		wine where wine_no > 0
 	</select>
-	
+
 	<!-- 와인리스트 불러오기 -->
 	<select id="listPage" resultType="com.javaex.vo.WineVo"
 		parameterType="com.javaex.vo.Criteria">
@@ -103,38 +104,32 @@
 			where w.wine_no = d.wine_no(+)
 		]]>
 		<choose>
-			<when
-				test="order_by_type=='wine_name_up'">
-				order by w.wine_name 			
+			<when test="order_by_type=='wine_name_up'">
+				order by w.wine_name
 			</when>
-			<when
-				test="order_by_type=='wine_name_down'">
+			<when test="order_by_type=='wine_name_down'">
 				<![CDATA[
 				order by w.wine_name desc
-				]]>			
+				]]>
 			</when>
-			<when
-				test="order_by_type=='wine_price_up'">
-				order by d.wine_price 			
+			<when test="order_by_type=='wine_price_up'">
+				order by d.wine_price
 			</when>
-			<when
-				test="order_by_type=='wine_price_down'">
+			<when test="order_by_type=='wine_price_down'">
 				<![CDATA[
 				order by d.wine_price desc
-				]]>			
+				]]>
 			</when>
-			<when
-				test="order_by_type=='reg_date_up'">
-				order by w.reg_date 			
+			<when test="order_by_type=='reg_date_up'">
+				order by w.reg_date
 			</when>
-			<when
-				test="order_by_type=='reg_date_down'">
+			<when test="order_by_type=='reg_date_down'">
 				<![CDATA[
 				order by w.reg_date desc
-				]]>			
+				]]>
 			</when>
 		</choose>
-		
+
 	</select>
 
 	<!-- 와인 추가 -->
@@ -152,4 +147,26 @@
 		delete from wine where wine_no
 		= #{wine_no}
 	</delete>
+
+	<!-- 상세정보 가져오기 -->
+	<select resultType="com.javaex.vo.WineVo" parameterType="int"
+		id="selectById">
+
+		<![CDATA[
+		select d.wine_no, 
+			   w.wine_name, 
+			   d.wine_company, 
+			   d.wine_price, 
+    		   d.wine_stock, 
+    		   d.wine_image, 
+    		   d.wine_alcohol, 
+    		   w.wine_country, 
+    		   d.wine_description,
+    		   w.wine_country, 
+    		   w.wine_type
+    	from WINE_DESCRIPTION d, WINE w
+    	where d.wine_no = w.wine_no
+    	and w.wine_no = #{wine_no}
+		]]>
+	</select>
 </mapper>

@@ -1,18 +1,16 @@
 package com.javaex.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javaex.dao.WineDao;
-import com.javaex.vo.Criteria;
-import com.javaex.vo.PageMaker;
 import com.javaex.vo.WineDescriptionVo;
 import com.javaex.vo.WineVo;
 
@@ -29,7 +27,7 @@ public class WineController {
 
 		mav.addObject("wineList", wineDao.getSearchByKeyword(search_type, keyword));
 		System.out.println(wineDao.getSearchByKeyword(search_type, keyword));
-		
+
 		mav.setViewName("main/index");
 
 		return mav;
@@ -71,6 +69,21 @@ public class WineController {
 		wineDao.delete(wineVo);
 
 		return "redirect:/main/index";
+	}
+
+	// 상세페이지
+	@RequestMapping("/view")
+	public ModelAndView view(@RequestParam int wine_no, ModelAndView mav) {
+		System.out.println(">>> " + this.getClass() + " 호출됨!");
+
+		// BlogVo blogVo = blogService.getBlog(id);
+		WineVo wineVo = wineDao.viewDetail(wine_no);
+		System.out.println(wineVo);
+
+		mav.addObject("wineList", wineVo);
+		mav.setViewName("winelist/view");
+
+		return mav;
 	}
 
 }
