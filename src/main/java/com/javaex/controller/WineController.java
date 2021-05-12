@@ -53,16 +53,15 @@ public class WineController {
 		return "winelist/view_admin";
 	}
 
-//	// 와인 등록
-//	@RequestMapping(value = "/wineInsert", method = RequestMethod.POST)
-//	public String regist(@ModelAttribute WineDescriptionVo wdVo) {
-//		System.out.println("addWine");
-//		System.out.println(wdVo.toString());
-//
-//		wineDao.insert(wdVo);
-//
-//		return "winelist/view_admin";
-//	}
+	// 와인 등록
+	@RequestMapping(value = "/wineInsert", method = RequestMethod.POST)
+	public String regist(@ModelAttribute WineVo wineVo) {
+		System.out.println("addWine");
+
+		wineDao.insert(wineVo);
+
+		return "redirect:/";
+	}
 
 	// 와인 삭제
 	@RequestMapping(value = "/wineDelete", method = RequestMethod.POST)

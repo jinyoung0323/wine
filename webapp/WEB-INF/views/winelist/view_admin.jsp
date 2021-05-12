@@ -54,7 +54,7 @@
   <body>
   
   <main class="container">
-  
+               <form action="/wine/wineInsert" method="post">
   <div class="row mb-2">
      
      <div class="col-md-2">
@@ -68,7 +68,7 @@
      </div>
      
      <div class="col-md-10">
-             <form action="/wine/wineInsert" method="post">
+           <!--   <form action="/wine/wineInsert" method="post"> -->
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div>
 
@@ -102,7 +102,7 @@
         </div>
        
       </div>
-        </form>
+<!--         </form> -->
      </div>
    
 <!--     <div class="col-md-6">
@@ -121,7 +121,7 @@
       </div>
     </div>-->
   </div> 
-   
+           </form>
   </main>
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 
