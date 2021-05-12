@@ -54,7 +54,7 @@
   <body>
   
   <main class="container">
-               <form action="/wine/wineInsert" method="post">
+               <form action="/wine/wineInsert" method="post" enctype="multipart/form-data">
   <div class="row mb-2">
      
      <div class="col-md-2">
@@ -62,7 +62,7 @@
    
         <div class="col-auto d-none d-lg-block">
           <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
+		<input type="file" name="wine_image" accept=".gif, .jpg, .png">
         </div>
       </div>
      </div>
@@ -97,7 +97,7 @@
           <div class="mb-1 text-muted">
          </div>
          
-         <button>등록</button>
+         <input type="submit">
        
         </div>
        

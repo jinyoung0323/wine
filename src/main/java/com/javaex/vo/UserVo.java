@@ -53,7 +53,7 @@ public class UserVo {
 		this.address = address;
 	}
 	
-	public UserVo(String nick_name, String password, String phone_no, String address	) {
+	public UserVo(String nick_name, String password, String phone_no, String address) {
 		super(); 
 		this.nick_name = nick_name;
 		this.password = password;
