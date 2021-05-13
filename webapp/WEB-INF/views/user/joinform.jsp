@@ -74,7 +74,7 @@
             
             <div class="col-sm-6">
               <label class="form-label">비밀번호</label>
-              <input id="password" type="password" class="form-control" placeholder="" value="" required>
+              <input id="password" name="password" type="password" class="form-control" placeholder="" value="" required>
               <div class="invalid-feedback">
                 Valid password is required.
               </div>
@@ -106,7 +106,7 @@
             
             <div class="col-12">
               <label for="address" class="form-label">Address</label>
-              <input id="address" name="address" type="text" class="form-control" placeholder="" required>
+              <input id="address" name="address" type="text" class="form-control" placeholder="" >
               <div class="invalid-feedback">
                 Please enter your shipping address.
               </div>

@@ -21,39 +21,57 @@ public class WineDao {
 		return sqlSession.selectOne("WineXml.listCount");
 	}
 
+	// 와인 검색 갯수
+	public int listCountBySearch(WineVo wineVo) {
+		return sqlSession.selectOne("WineXml.listCountBySearch", wineVo);
+	}
+	
+	// 와인 타입별 갯수
+	public int listCountByType(String wine_type) {
+		return sqlSession.selectOne("WineXml.listCountByType", wine_type);
+	}
+
 	// 와인리스트 불러오기
-	public List<WineVo> list(Criteria cr) {
-		return sqlSession.selectList("WineXml.listPage", cr);
+	public List<WineVo> list(WineVo wineVo) {
+		return sqlSession.selectList("WineXml.listPage", wineVo);
 	}
 
 	// 와인 검색
-	public List<WineVo> getSearchByKeyword(String search_type, String keyword) {
+	public List<WineVo> getSearchByKeyword(WineVo wineVo) {
 		System.out.println("----> sqlSession.selectList()");
 		System.out.println(sqlSession);
-		WineVo vo = new WineVo(search_type, keyword);
-
-		return sqlSession.selectList("WineXml.searchByKeyword", vo);
+		List<WineVo> result=sqlSession.selectList("WineXml.searchByKeyword", wineVo);
+		for(WineVo wv:result) {
+			System.out.println(wv);
+		}
+		return result;
 	}
 
 	// 와인리스트 불러오기
-	public List<WineVo> getOrderByWinelist(String order_by_type) {
+	public List<WineVo> listCateByType(String wine_type) {
 		System.out.println("----> sqlSession.selectList()");
 		System.out.println(sqlSession);
-		WineVo wineVo = new WineVo(order_by_type);
 
-		return sqlSession.selectList("WineXml.orderByWinelist", wineVo);
+		return sqlSession.selectList("WineXml.listCateByType", wine_type);
 	}
 
 	// 와인 추가
-//	public int insert(WineDescriptionVo wdVo) {
-//		System.out.println(wineVo);
-//		WineVo wineVo = new WineVo(wdVo);
-//		return sqlSession.insert("WineXml.insert", wineVo);
-//	}
+	public int insert(WineVo wineVo) {
+		return sqlSession.insert("WineXml.insert", wineVo);
+	}
 
 	// 와인 삭제
 	public void delete(WineVo wineVo) {
 		sqlSession.delete("WineXml.delete", wineVo);
+	}
+
+	// 와인 상세페이지
+	public WineVo viewDetail(int wine_no) {
+		System.out.println("----> sqlSession.selectList()");
+		System.out.println(sqlSession);
+		System.out.println("wine_no : " + wine_no);
+
+		return sqlSession.selectOne("WineXml.selectById", wine_no);
 	}
 
 }

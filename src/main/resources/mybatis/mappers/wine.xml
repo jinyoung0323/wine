@@ -5,12 +5,58 @@
 
 	<!-- 와인 총 갯수 -->
 	<select id="listCount" resultType="int">
-		select count(wine_no) from wine where wine_no > 0
+		select count(wine_no)
+		from wine
+		where wine_no > 0
 	</select>
-	
+
+	<!-- 와인 검색 수 -->
+	<select id="listCountBySearch" resultType="int"
+		parameterType="com.javaex.vo.WineVo">
+		<![CDATA[
+		select count(w.wine_no)	   
+      	from (
+        	select row_number() over (order by e.wine_no desc) as num, 
+        		   e.*
+         	from wine e
+         ]]>
+		<if test="keyword != null and keyword != '' ">
+			<![CDATA[
+         	where (
+					   e.wine_type like '%' || #{keyword} || '%' 
+					or e.wine_name like '%' || #{keyword} || '%' 
+					or e.wine_country like '%' || #{keyword} || '%'
+				)
+			]]>
+		</if>
+		<![CDATA[
+      	) w, wine_description d
+      	where num >= #{rowStart} and num <= #{rowEnd}
+      	and w.wine_no = d.wine_no(+)
+      	order by num desc
+		]]>
+	</select>
+
+	<!-- 와인 타입별 수 -->
+	<select id="listCountByType" resultType="int"
+		parameterType="String">
+		<![CDATA[
+		select count(w.wine_no)	   
+      	from (
+        	select row_number() over (order by e.wine_no desc) as num, 
+        		   e.*
+         	from wine e
+      	) w, wine_description d
+      	where w.wine_no = d.wine_no(+)
+      	and num >= #{rowStart} and num <= #{rowEnd}
+      	and w.wine_type = #{wine_type}
+      	order by w.wine_no desc
+		]]>
+	</select>
+
 	<!-- 와인리스트 불러오기 -->
 	<select id="listPage" resultType="com.javaex.vo.WineVo"
-		parameterType="com.javaex.vo.Criteria">
+		parameterType="com.javaex.vo.WineVo">
 	<![CDATA[
 		select w.wine_no, 
 			   w.wine_name,
@@ -27,30 +73,50 @@
       	) w, wine_description d
       	where num >= #{rowStart} and num <= #{rowEnd}
       	and w.wine_no = d.wine_no(+)
-      	order by w.wine_no desc
-		]]>
-	</select>
-
-	<!-- 와인리스트 불러오기 -->
-	<select id="selectList" parameterType="com.javaex.vo.WineVo"
-		resultType="com.javaex.vo.WineVo">
-		<![CDATA[
-			select w.wine_no, 
-				   w.wine_name,
-				   w.wine_type, 
-				   w.wine_country, 
-				   w.reg_date, 
-				   d.wine_price, 
-				   d.wine_stock,
-				   d.wine_image
-			from wine w, wine_description d
-			where w.wine_no = d.wine_no(+)
-			order by w.reg_date desc
 		]]>
 	</select>
 
 	<!-- 와인리스트 검색 -->
-	<select id="searchByKeyword" resultType="wine">
+	<select id="searchByKeyword" resultType="com.javaex.vo.WineVo"
+		parameterType="com.javaex.vo.WineVo">
+		<![CDATA[
+			select w.wine_no, 
+			       w.wine_name,
+			       w.wine_type, 
+			       w.wine_country, 
+			       w.reg_date,
+			       w.wine_price, 
+			       w.wine_stock,
+			       w.wine_image
+			from (
+			    select row_number() over (order by b.wine_no desc) as num, 
+			           b.*,
+			           r.wine_price,
+			           r.wine_stock,
+			           r.wine_image
+			    from wine b, wine_description r
+			    where 1=1
+			    and b.wine_no = r.wine_no 
+		]]>
+		<if test="keyword != null and keyword != '' ">
+			<![CDATA[
+         	and (
+					   b.wine_type like '%' || #{keyword} || '%' 
+					or b.wine_name like '%' || #{keyword} || '%' 
+					or b.wine_country like '%' || #{keyword} || '%'
+				)
+			]]>
+		</if>
+		<![CDATA[
+			) w
+			where num >= #{rowStart} and num <= #{rowEnd}
+		]]>
+
+	</select>
+
+	<!-- 와인타입별 리스트 -->
+	<select id="listCateByType" resultType="com.javaex.vo.WineVo"
+		parameterType="com.javaex.vo.WineVo">
 		<![CDATA[
 			select w.wine_no, 
 				   w.wine_name,
@@ -63,27 +129,19 @@
 			from wine w, wine_description d 
 			where w.wine_no = d.wine_no(+)
 		]]>
-		<if test="wine_type=='1'">
-			AND w.wine_type = 1
+
+		<if test="wine_type=='레드'">
+			AND w.wine_type = '레드'
 		</if>
-		<if test="wine_type=='2'">
-			AND w.wine_type = 2
+		<if test="wine_type=='화이트'">
+			AND w.wine_type = '화이트'
 		</if>
-		<if test="wine_type=='3'">
-			AND w.wine_type = 3
+		<if test="wine_type=='로제'">
+			AND w.wine_type = '로제'
 		</if>
-		<choose>
-			<when
-				test="search_type=='wine_name' and keyword != null and keyword != '' ">
-				AND w.wine_name like '%' || #{keyword} || '%'
-			</when>
-			<when
-				test="search_type=='wine_country' and keyword != null and keyword != '' ">
-				AND w.wine_country like '%' || #{keyword} || '%'
-			</when>
-		</choose>
+		
 		<![CDATA[
-			order by w.reg_date desc
+			order by w.wine_no desc
 		]]>
 
 	</select>
@@ -103,38 +161,32 @@
 			where w.wine_no = d.wine_no(+)
 		]]>
 		<choose>
-			<when
-				test="order_by_type=='wine_name_up'">
-				order by w.wine_name 			
+			<when test="order_by_type=='wine_name_up'">
+				order by w.wine_name
 			</when>
-			<when
-				test="order_by_type=='wine_name_down'">
+			<when test="order_by_type=='wine_name_down'">
 				<![CDATA[
 				order by w.wine_name desc
-				]]>			
+				]]>
 			</when>
-			<when
-				test="order_by_type=='wine_price_up'">
-				order by d.wine_price 			
+			<when test="order_by_type=='wine_price_up'">
+				order by d.wine_price
 			</when>
-			<when
-				test="order_by_type=='wine_price_down'">
+			<when test="order_by_type=='wine_price_down'">
 				<![CDATA[
 				order by d.wine_price desc
-				]]>			
+				]]>
 			</when>
-			<when
-				test="order_by_type=='reg_date_up'">
-				order by w.reg_date 			
+			<when test="order_by_type=='reg_date_up'">
+				order by w.reg_date
 			</when>
-			<when
-				test="order_by_type=='reg_date_down'">
+			<when test="order_by_type=='reg_date_down'">
 				<![CDATA[
 				order by w.reg_date desc
-				]]>			
+				]]>
 			</when>
 		</choose>
-		
+
 	</select>
 
 	<!-- 와인 추가 -->
@@ -152,4 +204,26 @@
 		delete from wine where wine_no
 		= #{wine_no}
 	</delete>
+
+	<!-- 상세정보 가져오기 -->
+	<select resultType="com.javaex.vo.WineVo" parameterType="int"
+		id="selectById">
+
+		<![CDATA[
+		select d.wine_no, 
+			   w.wine_name, 
+			   d.wine_company, 
+			   d.wine_price, 
+    		   d.wine_stock, 
+    		   d.wine_image, 
+    		   d.wine_alcohol, 
+    		   w.wine_country, 
+    		   d.wine_description,
+    		   w.wine_country, 
+    		   w.wine_type
+    	from WINE_DESCRIPTION d, WINE w
+    	where d.wine_no = w.wine_no
+    	and w.wine_no = #{wine_no}
+		]]>
+	</select>
 </mapper>
