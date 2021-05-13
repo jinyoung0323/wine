@@ -14,7 +14,7 @@
 <!-- Bootstrap core CSS -->
 <link href="/wine/assets/bootstrap_assets/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="/wine/assets/bootstrap.css">
+<link rel="stylesheet" href="/wine/assets/css/bootstrap.css">
 </head>
 <body>
 

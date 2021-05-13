@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<!-- 숫자를 최대 3자리마다 쉼표를 찍기 위해서 필요-->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,6 +53,7 @@
 
 
 <!-- Custom styles for this template -->
+<!-- css 적용불가로 각 한글 마다 굵은글씨 되게 넣어줄것! -->
 <link
 	href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap"
 	rel="stylesheet">
@@ -58,59 +62,66 @@
 		</head>
 		<body>
 			<center>
-			
+
 				<table>
-				<form name="form1" method="post" action="/wine/cart">
+					<!-- border = "1" 붙이면 테이블 영역 볼 수 있음 -->
 					<tr align="center">
 						<td rowspan="8"><img align="center"
 							src="${wineList.wine_image}" width="300" height="300"></td>
-						<td>상품번호 : </td>
+						<!-- 앞페이지에서 받아온 그림 세로로 8칸 합쳤음 -->
+						<td><b>상품번호 : </b></td>
 						<td></td>
 						<td>${wineList.wine_no}</td>
+						<!-- wineList -> WineController의 상세페이지 부분 mav.addObject("wineList", wineVo);에서 가져옴  -->
 					</tr>
 					<tr align="center">
-						<td>상 품 명 : </td>
+						<td><b>상 품 명 : </b></td>
 						<td></td>
 						<td>${wineList.wine_name}</td>
 					</tr>
 					<tr align="center">
-						<td>가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;격 : </td>
+						<td><b>가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;격 : </b></td>
 						<td></td>
-						<td>${wineList.wine_price}</td>
+						<td><fmt:formatNumber value="${wineList.wine_price}"
+								pattern="###,###,###" /></td>
 					</tr>
 					<tr align="center">
-						<td>국&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가 : </td>
+						<td><b>국&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가 : </b></td>
 						<td></td>
 						<td>${wineList.wine_country}</td>
 					</tr>
 					<tr align="center">
-						<td>제 조 사 : </td>
+						<td><b>제 조 사 : </b></td>
 						<td></td>
 						<td>${wineList.wine_company}</td>
 					</tr>
 					<tr align="center">
-						<td>도&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수</td>
+						<td><b>도&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수 : </b></td>
 						<td></td>
 						<td>${wineList.wine_alcohol}</td>
 					</tr>
 					<tr align="center">
-						<td>재&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;고 : </td>
+						<td><b>재&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;고 : </b></td>
 						<td></td>
 						<td>${wineList.wine_stock}</td>
 					</tr>
 					<tr align="center">
-						<td>상품소개 : </td>
+						<td><b>상품소개 : </b></td>
 						<td></td>
 						<td>${wineList.wine_description}</td>
 					</tr>
 					<tr align="right">
 						<td colspan="4"><br> <br>
+							<form name="form1" method="post" action="/wine/cart">
+								<!-- 카트로 넘겨주기 위한 form -->
+								<input type="hidden" name="wine_no" value="${wineList.wine_no}">
 								<select name="amount">
+									<!-- 선택 갯수 -->
 									<c:forEach begin="1" end="10" var="i">
 										<option value="${i}">${i}</option>
 									</c:forEach>
-								</select>&nbsp;개 <input type="submit" value="장바구니에 담기">
-								<input type="hidden" name="wine_count" value=""> 
+								</select>&nbsp;개 <input type="submit" value="장바구니에 담기"> <input
+									type="hidden" name="wine_count" value="">
 					</tr>
 					<tr>
 
@@ -120,8 +131,9 @@
 					<br>
 					</form>
 					</center>
-					<td colspan="4" align="left"><input align="left"
-						type="button" value="돌아가기" onclick="history.back(-1);"></td>
+					<td colspan="4" align="left"><input align="left" type="button"
+						value="돌아가기" onclick="history.back(-1);"></td>
+					<!-- 이전페이지로 돌아가기 -->
 
 
 				</table>
