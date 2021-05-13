@@ -5,8 +5,11 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.javaex.util.FileUtils;
 import com.javaex.vo.Criteria;
+import com.javaex.vo.FileVo;
 import com.javaex.vo.WineDescriptionVo;
 import com.javaex.vo.WineVo;
 
@@ -46,6 +49,19 @@ public class WineDao {
 
 	// 와인 추가
 	public int insert(WineVo wineVo) {
+		System.out.println(wineVo.toString());
+		//jsp에서 넘어온 등록할 정보들 중에서 file명을 추출
+		MultipartFile file = wineVo.getFile();
+		System.out.println(file.toString());
+		FileVo fileVo;
+		
+		if(!file.isEmpty()) {
+			FileUtils fileUtil = new FileUtils();
+			fileVo = fileUtil.fileUpload(file);
+			//가능?
+			wineVo.setWine_image(fileVo.getSaveName());
+		}
+		
 		return sqlSession.insert("WineXml.insert", wineVo);
 	}
 
