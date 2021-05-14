@@ -13,7 +13,7 @@ public class WineVo {
 	private String wine_image; 			// 와인이미지
 	private String search_type; 		// 검색 타입
 	private String keyword; 			// 검색 키워드
-	private String order_by_type; 		// 정렬 타입
+	private String sort_type; 		// 정렬 타입
 	private String wine_company; 		// 제조회사
 	private int wine_alcohol; 			// 알코올도수
 	private String wine_description; 	// 와인 상세설명
@@ -26,8 +26,6 @@ public class WineVo {
 	private int pageNo;					// 페이지 번호
 	private int totalCount;				// 게시글 총 갯수
 
-
-
 	/* 생성자 */
 
 	// 디폴트
@@ -35,6 +33,8 @@ public class WineVo {
 		this.page = 1;
 		this.perPageNum = 3;
 	}
+
+	public WineVo(WineDescriptionVo wdVo) {}
 
 	// 와인테이블 생성자
 	public WineVo(int wine_no, String wine_name, String wine_type, String wine_country, String reg_date) {
@@ -60,7 +60,7 @@ public class WineVo {
 		this.wine_image = wine_image;
 	}
 
-	// 검색타입&키워드 생성자
+	// 검색 생성자
 	public WineVo(String wine_type) {
 		super();
 		this.wine_type = wine_type;
@@ -71,7 +71,6 @@ public class WineVo {
 //		super();
 //		this.order_by_type = order_by_type;
 //	}
-
 	/* Getter, Setter */
 
 	public int getWine_no() {
@@ -89,6 +88,7 @@ public class WineVo {
 	public void setWine_name(String wine_name) {
 		this.wine_name = wine_name;
 	}
+
 
 	public String getWine_type() {
 		return wine_type;
@@ -154,12 +154,12 @@ public class WineVo {
 		this.keyword = keyword;
 	}
 
-	public String getOrder_by_type() {
-		return order_by_type;
+	public String getSort_type() {
+		return sort_type;
 	}
 
-	public void setOrder_by_type(String order_by_type) {
-		this.order_by_type = order_by_type;
+	public void setSort_type(String sort_type) {
+		this.sort_type = sort_type;
 	}
 
 	public String getWine_company() {
@@ -254,13 +254,12 @@ public class WineVo {
 		return "WineVo [wine_no=" + wine_no + ", wine_name=" + wine_name + ", wine_type=" + wine_type
 				+ ", wine_country=" + wine_country + ", reg_date=" + reg_date + ", wine_price=" + wine_price
 				+ ", wine_stock=" + wine_stock + ", wine_image=" + wine_image + ", search_type=" + search_type
-				+ ", keyword=" + keyword + ", order_by_type=" + order_by_type + ", wine_company=" + wine_company
+				+ ", keyword=" + keyword + ", sort_type=" + sort_type + ", wine_company=" + wine_company
 				+ ", wine_alcohol=" + wine_alcohol + ", wine_description=" + wine_description + ", file=" + file
 				+ ", wine_count=" + wine_count + ", rowStart=" + rowStart + ", rowEnd=" + rowEnd + ", page=" + page
 				+ ", perPageNum=" + perPageNum + ", pageNo=" + pageNo + ", totalCount=" + totalCount + "]";
 	}
 
-	
 	
 	
 

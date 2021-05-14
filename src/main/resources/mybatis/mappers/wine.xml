@@ -10,7 +10,7 @@
 		where wine_no > 0
 	</select>
 
-	<!-- 와인 검색 수 -->
+	<!-- 검색한 와인 갯수 -->
 	<select id="listCountBySearch" resultType="int"
 		parameterType="com.javaex.vo.WineVo">
 		<![CDATA[
@@ -37,7 +37,7 @@
 		]]>
 	</select>
 
-	<!-- 와인 타입별 수 -->
+	<!-- 타입별 와인 갯수 -->
 	<select id="listCountByType" resultType="int"
 		parameterType="String">
 		<![CDATA[
@@ -114,7 +114,7 @@
 
 	</select>
 
-	<!-- 와인타입별 리스트 -->
+	<!-- 타입별 와인리스트 -->
 	<select id="listCateByType" resultType="com.javaex.vo.WineVo"
 		parameterType="com.javaex.vo.WineVo">
 		<![CDATA[
@@ -147,45 +147,63 @@
 	</select>
 
 	<!-- 와인리스트 정렬 -->
-	<select id="orderByWinelist" resultType="wine">
+	<select id="sortByWinelist" resultType="com.javaex.vo.WineVo"
+		parameterType="com.javaex.vo.WineVo">
 		<![CDATA[
-			select w.wine_no,
-				   w.wine_name,
-				   w.wine_type,
-				   w.wine_country,
-				   w.reg_date,
-			       d.wine_price,
-				   d.wine_stock,
-				   d.wine_image
-			from wine w, wine_description d
-			where w.wine_no = d.wine_no(+)
+			select w.wine_no, 
+			       w.wine_name,
+			       w.wine_type, 
+			       w.wine_country, 
+			       w.reg_date,
+			       w.wine_price, 
+			       w.wine_stock,
+			       w.wine_image
+			from (
 		]]>
 		<choose>
-			<when test="order_by_type=='wine_name_up'">
-				order by w.wine_name
-			</when>
-			<when test="order_by_type=='wine_name_down'">
+			<when test="sort_type=='wine_name_up'">
 				<![CDATA[
-				order by w.wine_name desc
+				select row_number() over (order by b.wine_name) as num,
 				]]>
 			</when>
-			<when test="order_by_type=='wine_price_up'">
-				order by d.wine_price
-			</when>
-			<when test="order_by_type=='wine_price_down'">
+			<when test="sort_type=='wine_name_down'">
 				<![CDATA[
-				order by d.wine_price desc
+				select row_number() over (order by b.wine_name desc) as num,
 				]]>
 			</when>
-			<when test="order_by_type=='reg_date_up'">
-				order by w.reg_date
-			</when>
-			<when test="order_by_type=='reg_date_down'">
+			<when test="sort_type=='wine_price_up'">
 				<![CDATA[
-				order by w.reg_date desc
+				select row_number() over (order by r.wine_price) as num,
+				]]>
+			</when>
+			<when test="sort_type=='wine_price_down'">
+				<![CDATA[
+				select row_number() over (order by r.wine_price desc) as num,
+				]]>
+			</when>
+			<when test="sort_type=='reg_date_up'">
+				<![CDATA[
+				select row_number() over (order by b.reg_date) as num,
+				]]>
+			</when>
+			<when test="sort_type=='reg_date_down'">
+				<![CDATA[
+				select row_number() over (order by b.reg_date desc) as num,
 				]]>
 			</when>
 		</choose>
+		<![CDATA[
+					b.*,
+			        r.wine_price,
+			        r.wine_stock,
+			        r.wine_image
+			    from wine b, wine_description r
+			    where 1=1
+			    and b.wine_no = r.wine_no 
+			) w
+			where num >= #{rowStart} and num <= #{rowEnd}
+		]]>
+		
 
 	</select>
 

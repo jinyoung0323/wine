@@ -44,8 +44,8 @@ public class WineController {
 		return mav;
 	}
 
-	// 와인 리스트 정렬
-	@RequestMapping(value = "/cate")
+	// 와인 타입별 리스트
+	@RequestMapping(value = "/wineCate")
 	public ModelAndView cateList(ModelAndView mav,  @RequestParam(value="wine_type", defaultValue = "default")String wine_type,
 			WineVo wineVo) {
 
@@ -54,6 +54,21 @@ public class WineController {
 		
 		pageMaker.setTotalCount(wineDao.listCountByType(wine_type));
 		mav.addObject("wineList", wineDao.listCateByType(wine_type));
+		mav.setViewName("main/index");
+
+		return mav;
+	}
+	
+	// 와인 정렬 리스트
+	@RequestMapping(value="/wineSort")
+	public ModelAndView sortList(ModelAndView mav,  @RequestParam(value="sort_type", defaultValue = "default")String sort_type,
+			WineVo wineVo) {
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setWineVo(wineVo);
+		
+		pageMaker.setTotalCount(wineDao.listCount());
+		mav.addObject("wineList", wineDao.sortByWinelist(sort_type));
 		mav.setViewName("main/index");
 
 		return mav;
@@ -87,7 +102,7 @@ public class WineController {
 	}
 
 	// 상세페이지
-	@RequestMapping("/view")
+	@RequestMapping("/wineView")
 	public ModelAndView view(@RequestParam int wine_no, ModelAndView mav) {
 		System.out.println(">>> " + this.getClass() + " 호출됨!");
 
