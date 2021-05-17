@@ -4,6 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 	<script type="text/javascript" src="WEB-INF/views/user/joinsuccess.js"></script> -->
 	<title>회원가입 Form</title>
 </head>
 <body>
@@ -42,17 +43,16 @@
 		  <link href="form-validation.css" rel="stylesheet">
 		</head>
 		
-<body class="bg-light">
-
+<body class="bg-light">>
 <div class="container">
   <main>
     <div class="py-5 text-center">
       <img class="d-block mx-auto mb-4" src="/wine/assets/bootstrap_assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
       <h2>회원가입 form</h2>
-      <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+<!--       <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p> -->
     </div>
       <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3">Billing address</h4>
+<!--         <h4 class="mb-3">Billing address</h4> -->
         <form class="needs-validation" novalidate id="join-form" name="actionName" value="join" method="post" action="<%=request.getContextPath() %>/user/join">
           <div class="row g-3">
           
@@ -64,22 +64,14 @@
               </div>
             </div>
             
-            <div class="col-sm-6">
+            <div class="col-12">
               <label for="nick_name" class="form-label">이름</label>
               <input id="nick_name" name="nick_name" type="text" class="form-control" placeholder="" value="" required>
               <div class="invalid-feedback">
                 Valid name is required.
               </div>
-            </div>
-            
-            <div class="col-sm-6">
-              <label class="form-label">비밀번호</label>
-              <input id="password" name="password" type="password" class="form-control" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Valid password is required.
-              </div>
-            </div>
-            
+            </div>            
+             
             <div class="col-sm-6">
               <label for="phone_no" class="form-label">전화번호</label>
               <input id="phone_no" name="phone_no" type="text" class="form-control" placeholder="01012341234" value="" required>
@@ -97,11 +89,19 @@
             </div>
             
             <div class="col-sm-6">
-            	<fieldset>
-	              <legend>등급</legend>
-	              <input type="radio" name="grade" value="1" checked="checked"><label>user</label>
-	              <input type="radio" name="grade" value="2" ><label>admin</label>
-	            </fieldset>  
+              <label class="form-label">비밀번호</label>
+              <input id="password" name="password" type="password" class="form-control" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid password is required.
+              </div>
+            </div>
+            
+            <div class="col-sm-6">
+              <label class="form-label">비밀번호 확인</label>
+              <input id="password" name="passwordcheck" type="password" class="form-control" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid password is required.
+              </div>
             </div>
             
             <div class="col-12">
@@ -111,8 +111,21 @@
                 Please enter your shipping address.
               </div>
             </div>
+                       
+            <div class="col-sm-6">
+            	<fieldset>
+	              <legend>등급</legend>
+	              <input type="radio" name="grade" value="1" checked="checked"><label>user</label>
+	              <input type="radio" name="grade" value="2" ><label>admin</label>
+	            </fieldset>  
+            </div>
+            
+            
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit">가입하기</button>
+<!--           <button class="w-100 btn btn-primary btn-lg" type="submit" onClick="inputCheck()">가입하기</button> -->
+           <input class="w-100 btn btn-primary btn-lg" type="submit" value="가입하기" onClick="inputCheck()">
+<!-- 			   <input class="w-100 btn btn-primary btn-lg" type="button" value="가입하기" onClick="inputCheck()"> -->
+<!-- 				<input type="button"value="회원가입" onClick="inputCheck()"> &nbsp; &nbsp;  -->
         </form>
       </div>
     </div>

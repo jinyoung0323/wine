@@ -30,7 +30,7 @@ public class UserController {
 	public String join(@ModelAttribute UserVo userVo) {
 		System.out.println("join user : " + userVo);
 		userDao.insert(userVo);
-		return "/user/joinsuccess";
+		return "user/user_js/joinsuccess";
 	}
 
 	// 로그인폼
@@ -49,9 +49,9 @@ public class UserController {
 			session.setAttribute("User", User);
 			System.out.println("login user : " + User);
 
-			return "redirect:/";
+			return "user/user_js/loginsuccess";
 		} else { // 실패
-			return "redirect:/";
+			return "user/user_js/loginfail";
 		}
 
 	}
@@ -63,7 +63,7 @@ public class UserController {
 		session.invalidate();
 		System.out.println("logout user");
 
-		return "redirect:/";
+		return "user/user_js/logoutsuccess";
 	}
 
 	// 사용자 수정폼

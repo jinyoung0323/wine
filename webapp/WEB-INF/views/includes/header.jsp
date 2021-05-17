@@ -62,9 +62,9 @@
 					<c:when test="${User == null }">
 						<!-- 로그인 전 -->
 						<button type="button" class="btn btn-outline-primary me-2"
-							onclick="location.href='<%=request.getContextPath()%>/user/loginform'">Login</button>
+							onclick="location.href='<%=request.getContextPath()%>/user/loginform'">로그인</button>
 						<button type="button" class="btn btn-primary"
-							onclick="location.href='<%=request.getContextPath()%>/user/joinform'">Sign-up</button>
+							onclick="location.href='<%=request.getContextPath()%>/user/joinform'">회원가입</button>
 
 					</c:when>
 					<c:otherwise>
@@ -72,23 +72,25 @@
 						<!-- 일반 사용자 -->
 						<table>
 							<c:if test="${User.grade == 1}">
-								<li>${User.nick_name }&nbsp;님</li>
-								<li><a href="<%=request.getContextPath()%>/user/modifyform">회원정보수정</a></li>
-								<li><a href="<%=request.getContextPath()%>/user/logout">로그아웃</a></li>
+								${User.nick_name }&nbsp;님 &nbsp;&nbsp;&nbsp;
+								<button type="button"
+											class="btn btn-outline-primary me-2"
+											onclick="location.href='<%=request.getContextPath()%>/user/modifyform'">회원정보수정</button>
+								<button type="button"
+											class="btn btn-outline-primary me-2"
+											onclick="location.href='<%=request.getContextPath()%>/user/logout'">로그아웃</button>
 							</c:if>
 						</table>
 
 						<!-- 관리자 -->
 						<table>
 							<c:if test="${User.grade == 2}">
-								<tr>
-									<th>관리자님</th>&nbsp;
-									<th><button type="button"
+									관리자님&nbsp;&nbsp;&nbsp;
+									<button type="button"
 											class="btn btn-outline-primary me-2"
-											onclick="location.href='<%=request.getContextPath()%>/wineRegist'">등록</button></th>&nbsp;
-									<th><button type="button" class="btn btn-primary"
-											onclick="location.href='<%=request.getContextPath()%>/user/logout'">Sign-out</button></th>
-								</tr>
+											onclick="location.href='<%=request.getContextPath()%>/wineRegist'">등록</button>
+									<button type="button" class="btn btn-primary"
+											onclick="location.href='<%=request.getContextPath()%>/user/logout'">Sign-out</button>
 							</c:if>
 						</table>
 					</c:otherwise>
