@@ -6,9 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<script type="text/javascript">
 	function inputCheck(){
-		if(document.email.value==""){
+		if(email.value==""){
 			alert("이메일을 입력해 주세요.");
-			document.email.focus();
+			email.focus();
 			return;
 		}
 		if(nick_name.value==""){
