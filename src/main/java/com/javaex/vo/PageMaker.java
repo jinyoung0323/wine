@@ -10,10 +10,10 @@ public class PageMaker {
 	private boolean prev;				// 이전 페이지
 	private boolean next;				// 다음 페이지
 	private int displayPageNum = 5;		// 5페이지 넘어갈 시 다음, 이전 페이지 나타남
-	private Criteria cr;				// Criteria.java
+	private WineVo wineVo;				
 	
-	public void setCr(Criteria cr) {
-		this.cr = cr;
+	public void setWineVo(WineVo wineVo) {
+		this.wineVo = wineVo;
 	}
 	
 	public void setTotalCount(int totalCount) {
@@ -45,25 +45,25 @@ public class PageMaker {
 		return displayPageNum;
 	}
 	
-	public Criteria getCr() {
-		return cr;
+	public WineVo getWineVo() {
+		return wineVo;
 	}
 	
 	
 	private void calcData() {
-		endPage = (int)(Math.ceil(cr.getPage() / (double)displayPageNum) * displayPageNum);
+		endPage = (int)(Math.ceil(wineVo.getPage() / (double)displayPageNum) * displayPageNum);
 		startPage = (endPage - displayPageNum) + 1;
 		
-		int tempEndPage = (int)(Math.ceil(totalCount / (double)cr.getPerPageNum()));
+		int tempEndPage = (int)(Math.ceil(totalCount / (double)wineVo.getPerPageNum()));
 		if(endPage > tempEndPage) {
 			endPage = tempEndPage;
 		}
 		prev = (startPage == 1) ? false : true;
-		next = (endPage * cr.getPerPageNum() >= totalCount) ? false : true;
+		next = (endPage * wineVo.getPerPageNum() >= totalCount) ? false : true;
 	}
 	
 	public String makeQuery(int page) {
-		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page).queryParam("perPageNum", cr.getPerPageNum()).build();
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page).queryParam("perPageNum", wineVo.getPerPageNum()).build();
 		return uriComponents.toUriString();
 	}
 }

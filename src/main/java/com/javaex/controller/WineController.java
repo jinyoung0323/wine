@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javaex.dao.WineDao;
+import com.javaex.vo.PageMaker;
 import com.javaex.vo.WineDescriptionVo;
 import com.javaex.vo.WineVo;
 
@@ -20,24 +21,54 @@ public class WineController {
 	@Autowired
 	private WineDao wineDao;
 
-	// 게시글 검색
+	// 와인 검색
 	@RequestMapping("/wineSearch")
-	public ModelAndView getSearch(HttpServletRequest request, ModelAndView mav, String search_type, String keyword) {
+	public ModelAndView getSearch(HttpServletRequest request, ModelAndView mav, String keyword, WineVo wineVo) {
 		System.out.println(">>> " + this.getClass() + " 호출됨!");
 
-		mav.addObject("wineList", wineDao.getSearchByKeyword(search_type, keyword));
-		System.out.println(wineDao.getSearchByKeyword(search_type, keyword));
-
+		wineVo.setKeyword(keyword);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setWineVo(wineVo);
+		
+		pageMaker.setTotalCount(wineDao.listCountBySearch(wineVo));
+		mav.addObject("wineList", wineDao.getSearchByKeyword(wineVo));
+		
+		System.out.println("wineDao.listCountBySearch() : " + pageMaker.getTotalCount());
+		
+		System.out.println("pageMaker : " + pageMaker);
+		
+		mav.addObject("pageMaker", pageMaker);
 		mav.setViewName("main/index");
 
 		return mav;
 	}
 
-	// 와인 리스트 정렬
-	@RequestMapping(value = "/orderByWinelist")
-	public ModelAndView orderList(ModelAndView mav, String order_by_type) {
+	// 와인 타입별 리스트
+	@RequestMapping(value = "/wineCate")
+	public ModelAndView cateList(ModelAndView mav,  @RequestParam(value="wine_type", defaultValue = "default")String wine_type,
+			WineVo wineVo) {
 
-		mav.addObject("wineList", wineDao.getOrderByWinelist(order_by_type));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setWineVo(wineVo);
+		
+		pageMaker.setTotalCount(wineDao.listCountByType(wine_type));
+		mav.addObject("wineList", wineDao.listCateByType(wine_type));
+		mav.setViewName("main/index");
+
+		return mav;
+	}
+	
+	// 와인 정렬 리스트
+	@RequestMapping(value="/wineSort")
+	public ModelAndView sortList(ModelAndView mav,  @RequestParam(value="sort_type", defaultValue = "default")String sort_type,
+			WineVo wineVo) {
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setWineVo(wineVo);
+		
+		pageMaker.setTotalCount(wineDao.listCount());
+		mav.addObject("wineList", wineDao.sortByWinelist(sort_type));
 		mav.setViewName("main/index");
 
 		return mav;
@@ -71,7 +102,7 @@ public class WineController {
 	}
 
 	// 상세페이지
-	@RequestMapping("/view")
+	@RequestMapping("/wineView")
 	public ModelAndView view(@RequestParam int wine_no, ModelAndView mav) {
 		System.out.println(">>> " + this.getClass() + " 호출됨!");
 

@@ -8,6 +8,8 @@
 <%@page import="com.javaex.vo.WineDescriptionVo"%>
 
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,11 +17,44 @@
 <link href="/wine/assets/bootstrap_assets/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="/wine/assets/css/bootstrap.css">
+
+<script type="text/javascript">
+	function sort_event1(wine_name_up) {
+		window.location = "/wine/wineSort?sort_type=" + wine_name_up;
+		return;
+	}
+	
+	function sort_event2(wine_name_down) {
+		window.location = "/wine/wineSort?sort_type=" + wine_name_down;
+		return;
+	}
+	
+	function sort_event3(wine_price_up) {
+		window.location = "/wine/wineSort?sort_type=" + wine_price_up;
+		return;
+	}
+	
+	function sort_event4(wine_price_down) {
+		window.location = "/wine/wineSort?sort_type=" + wine_name_down;
+		return;
+	}
+	
+	function sort_event5(reg_date_up) {
+		window.location = "/wine/wineSort?sort_type=" + reg_date_up;
+		return;
+	}
+	
+	function sort_event6(reg_date_down) {
+		window.location = "/wine/wineSort?sort_type=" + reg_date_down;
+		return;
+	}
+</script>
+
 </head>
 <body>
 
+	<!-- header -->
 	<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
-
 
 
 	<main>
@@ -35,18 +70,10 @@
 						entirely.</p>
 
 					<form id="type_form" action="/wine/wineSearch" method="post">
-						<select name="wine_type">
-							<option selected>와인종류</option>
-							<option value="1">레드</option>
-							<option value="2">화이트</option>
-							<option value="3">로제</option>
-						</select> <select name="search_type">
-							<option selected>검색</option>
-							<option value="wine_name">이름</option>
-							<option value="wine_country">생산국</option>
-						</select> <input type="text" id="keyword" name="keyword" value="">
-						<input type="submit" value="검색">
+						<input type="text" id="keyword" name="keyword" value=""> <input
+							type="submit" value="검색">
 					</form>
+
 				</div>
 
 			</div>
@@ -55,8 +82,9 @@
 		<div class="album py-5 bg-light">
 
 			<div class="container">
-				<form class="form-inline align-self-end" id="order_by_form" action="/wine/orderByWinelist"
-					method="post">
+				<!--  
+				<form class="form-inline align-self-end" id="order_by_form"
+					action="/wine/orderByWinelist" method="post">
 					<select name="order_by_type">
 						<option selected>정렬기준</option>
 						<option value="wine_name_up">가나다↑</option>
@@ -67,14 +95,24 @@
 						<option value="reg_date_down">최신순</option>
 					</select> <input type="submit" value="정렬">
 				</form>
+				-->
+
+				<a onclick="sort_event1(wine_name_up)" class="sort">가나다↑</a>
+				<a onclick="sort_event2(wine_name_down)" class="sort">가나다↓</a>
+				<a onclick="sort_event3(wine_price_up)" class="sort">낮은가격순</a>
+				<a onclick="sort_event4(wine_price_down)" class="sort">높은가격순</a>
+				<a onclick="sort_event5(reg_date_up)" class="sort">등록순</a>
+				<a onclick="sort_event6(reg_date_down)" class="sort">최신순</a>
+
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 					<div class="col">
 
 						<c:forEach items="${wineList}" var="winelist">
 							<div class="card shadow-sm">
 								<!--            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>-->
-								<a href="/wine/view?wine_no=${winelist.wine_no}"><img src="${winelist.wine_image}" alt="image">
-								</a>
+
+								<a href="/wine/view?wine_no=${winelist.wine_no}"><img
+									src="${winelist.wine_image}" alt="image"> </a>
 
 								<div class="card-body">
 									<p class="card-text">와인번호 : ${winelist.wine_no}</p>
@@ -82,19 +120,24 @@
 									<p class="card-text">
 										와인타입 :
 										<c:choose>
-											<c:when test="${winelist.wine_type == 1}">
-										 레드와인
+											<c:when test="${winelist.wine_type == '레드'}">
+										 red
 											</c:when>
-											<c:when test="${winelist.wine_type == 2}">
-										 화이트와인
+											<c:when test="${winelist.wine_type == '화이트'}">
+										 white
 											</c:when>
-											<c:otherwise>
-										 로제와인
-											</c:otherwise>
+											<c:when test="${winelist.wine_type == '로제'}">
+										 rose
+											</c:when>
 										</c:choose>
 									</p>
 									<p class="card-text">와인생산국 : ${winelist.wine_country}</p>
-									<p class="card-text">등록일 : ${winelist.reg_date}</p>
+									<p class="card-text">
+										등록일 :
+										<fmt:parseDate value="${winelist.reg_date}" var="parseDate"
+											pattern="yyyy-MM-dd" />
+										<fmt:formatDate value="${parseDate}" pattern="yyyy/MM/dd" />
+									</p>
 									<p class="card-text">
 										와인가격 :
 										<fmt:formatNumber value="${winelist.wine_price}"
@@ -130,6 +173,10 @@
 			</ul>
 		</div>
 	</main>
+
+	<form id="sort" action="/mysite2/guestbook/deleteform" method="post">
+		<input type="hidden" name="sort_by_type" value="">
+	</form>
 
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 

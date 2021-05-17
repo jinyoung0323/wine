@@ -24,44 +24,61 @@ public class WineDao {
 		return sqlSession.selectOne("WineXml.listCount");
 	}
 
+	// 와인 검색 갯수
+	public int listCountBySearch(WineVo wineVo) {
+		return sqlSession.selectOne("WineXml.listCountBySearch", wineVo);
+	}
+
+	// 와인 타입별 갯수
+	public int listCountByType(String wine_type) {
+		return sqlSession.selectOne("WineXml.listCountByType", wine_type);
+	}
+
 	// 와인리스트 불러오기
-	public List<WineVo> list(Criteria cr) {
-		return sqlSession.selectList("WineXml.listPage", cr);
+	public List<WineVo> list(WineVo wineVo) {
+		return sqlSession.selectList("WineXml.listPage", wineVo);
 	}
 
 	// 와인 검색
-	public List<WineVo> getSearchByKeyword(String search_type, String keyword) {
+	public List<WineVo> getSearchByKeyword(WineVo wineVo) {
 		System.out.println("----> sqlSession.selectList()");
 		System.out.println(sqlSession);
-		WineVo vo = new WineVo(search_type, keyword);
-
-		return sqlSession.selectList("WineXml.searchByKeyword", vo);
+		List<WineVo> result = sqlSession.selectList("WineXml.searchByKeyword", wineVo);
+		return result;
 	}
 
-	// 와인리스트 불러오기
-	public List<WineVo> getOrderByWinelist(String order_by_type) {
+	// 타입별 와인리스트 불러오기
+	public List<WineVo> listCateByType(String wine_type) {
 		System.out.println("----> sqlSession.selectList()");
 		System.out.println(sqlSession);
-		WineVo wineVo = new WineVo(order_by_type);
 
-		return sqlSession.selectList("WineXml.orderByWinelist", wineVo);
+		return sqlSession.selectList("WineXml.listCateByType", wine_type);
+	}
+
+	// 타입별 와인리스트 불러오기
+	public List<WineVo> sortByWinelist(String sort_type) {
+		System.out.println("----> sqlSession.selectList()");
+		System.out.println(sqlSession);
+
+		return sqlSession.selectList("WineXml.sortByWinelist", sort_type);
 	}
 
 	// 와인 추가
 	public int insert(WineVo wineVo) {
+
 		System.out.println(wineVo.toString());
-		//jsp에서 넘어온 등록할 정보들 중에서 file명을 추출
+		// jsp에서 넘어온 등록할 정보들 중에서 file명을 추출
 		MultipartFile file = wineVo.getFile();
 		System.out.println(file.toString());
 		FileVo fileVo;
-		
-		if(!file.isEmpty()) {
+
+		if (!file.isEmpty()) {
 			FileUtils fileUtil = new FileUtils();
 			fileVo = fileUtil.fileUpload(file);
-			//가능?
+			// 가능?
 			wineVo.setWine_image(fileVo.getSaveName());
 		}
-		
+
 		return sqlSession.insert("WineXml.insert", wineVo);
 	}
 
