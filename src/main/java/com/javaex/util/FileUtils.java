@@ -12,21 +12,23 @@ import com.javaex.vo.FileVo;
 
 public class FileUtils {
 
-public FileVo fileUpload(MultipartFile file) {
-		
-		String saveDir = "/wine/webapp/assets/image";
+	public FileVo fileUpload(MultipartFile file, String path) {
+
+		String saveDir = path + "assets\\image";
+		System.out.println(saveDir);
 
 		// 원파일이름
 		String orgName = file.getOriginalFilename();
-		System.out.println(orgName);
+
 		// 확장자
 		String exName = orgName.substring(orgName.lastIndexOf("."));
 
 		// 저장파일이름
 		String saveName = UUID.randomUUID().toString()+"_" + orgName;
 
-		//파일패스 생성 //
-		String filePath = saveDir + "/" + saveName;		
+		//파일패스 생성
+		String filePath = saveDir + "//" + saveName;
+		System.out.println(filePath);
 		
 		//파일 사이즈
 		long fileSize = file.getSize();
@@ -46,11 +48,11 @@ public FileVo fileUpload(MultipartFile file) {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		FileVo fileVo = new FileVo(orgName, exName, saveName, filePath, fileSize);
-		
+
 		return fileVo;
-		
+
 	}
 
 }

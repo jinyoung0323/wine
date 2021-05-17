@@ -1,6 +1,11 @@
 package com.javaex.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javaex.dao.WineDao;
@@ -84,10 +90,11 @@ public class WineController {
 
 	// 와인 등록
 	@RequestMapping(value = "/wineInsert", method = RequestMethod.POST)
-	public String regist(@ModelAttribute WineVo wineVo) {
+	public String regist(@ModelAttribute WineVo wineVo, HttpServletRequest request) {
 		System.out.println("addWine");
-
-		wineDao.insert(wineVo);
+		String path = request.getSession().getServletContext().getRealPath("/");
+		System.out.println(path);
+		wineDao.insert(wineVo, path);
 
 		return "redirect:/";
 	}

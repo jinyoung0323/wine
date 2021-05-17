@@ -53,7 +53,7 @@
 
 	<!-- url매핑-->
 	<!-- <mvc:resources mapping="/upload/**" location="file:D:/javaStudy/upload/" /> -->
-  <mvc:resources mapping="/image/**" location="file:/wine/webapp/assets/image" />
+  <mvc:resources mapping="/image/**" location="/assets/image" />
 
 
 </beans>

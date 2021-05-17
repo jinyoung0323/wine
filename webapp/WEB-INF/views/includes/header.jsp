@@ -4,7 +4,7 @@
 
 
 <head>
-<title>Headers · Bootstrap v5.0</title>
+<title>우리가 만드는 wine판매사이트</title>
 
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.0/examples/headers/">
