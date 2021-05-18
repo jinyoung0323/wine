@@ -93,6 +93,7 @@ public class WineController {
 	public String regist(@ModelAttribute WineVo wineVo, HttpServletRequest request) {
 		System.out.println("addWine");
 		String path = request.getSession().getServletContext().getRealPath("/");
+		//String path2 = application.getRealPath(fileName)
 		System.out.println(path);
 		wineDao.insert(wineVo, path);
 
