@@ -80,7 +80,7 @@ public class WineDao {
 			FileUtils fileUtil = new FileUtils();
 			fileVo = fileUtil.fileUpload(file, path);
 			// 가능?
-			wineVo.setWine_image(fileVo.getSaveName());
+			wineVo.setWine_image(fileVo.getFilePath());
 		}
 
 		return sqlSession.insert("WineXml.insert", wineVo);

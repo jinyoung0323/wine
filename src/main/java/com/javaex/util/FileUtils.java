@@ -15,6 +15,7 @@ public class FileUtils {
 	public FileVo fileUpload(MultipartFile file, String path) {
 
 		String saveDir = path + "assets\\image";
+		//String saveDir = "/wine/webapp/assets/image";
 		System.out.println(saveDir);
 
 		// 원파일이름
@@ -27,7 +28,7 @@ public class FileUtils {
 		String saveName = UUID.randomUUID().toString()+"_" + orgName;
 
 		//파일패스 생성
-		String filePath = saveDir + "//" + saveName;
+		String filePath = saveDir + "\\" + saveName;
 		System.out.println(filePath);
 		
 		//파일 사이즈
