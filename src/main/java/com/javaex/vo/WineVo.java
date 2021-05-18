@@ -34,7 +34,6 @@ public class WineVo {
 		this.perPageNum = 3;
 	}
 
-	public WineVo(WineDescriptionVo wdVo) {}
 
 	// 와인테이블 생성자
 	public WineVo(int wine_no, String wine_name, String wine_type, String wine_country, String reg_date) {
