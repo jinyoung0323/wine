@@ -14,65 +14,84 @@
 	<select id="listCountBySearch" resultType="int"
 		parameterType="com.javaex.vo.WineVo">
 		<![CDATA[
-		select count(w.wine_no)	   
-      	from (
-        	select row_number() over (order by e.wine_no desc) as num, 
-        		   e.*
-         	from wine e
-         ]]>
-		<if test="keyword != null and keyword != '' ">
-			<![CDATA[
-         	where (
-					   e.wine_type like '%' || #{keyword} || '%' 
-					or e.wine_name like '%' || #{keyword} || '%' 
-					or e.wine_country like '%' || #{keyword} || '%'
-				)
-			]]>
-		</if>
-		<![CDATA[
-      	) w, wine_description d
-      	where num >= #{rowStart} and num <= #{rowEnd}
-      	and w.wine_no = d.wine_no(+)
-      	order by num desc
+		select count(w.wine_no)
+		from wine w, wine_description d
+		where w.wine_no = d.wine_no(+)
+		and (
+       		w.wine_type like '%' || #{keyword} || '%' 		or
+			w.wine_name like '%' || #{keyword} || '%' 		or
+			w.wine_country like '%' || #{keyword} || '%'
+		)
 		]]>
 	</select>
 
 	<!-- 타입별 와인 갯수 -->
 	<select id="listCountByType" resultType="int"
-		parameterType="String">
+		parameterType="com.javaex.vo.WineVo">
 		<![CDATA[
 		select count(w.wine_no)	   
-      	from (
-        	select row_number() over (order by e.wine_no desc) as num, 
-        		   e.*
-         	from wine e
-      	) w, wine_description d
+      	from wine w, wine_description d
       	where w.wine_no = d.wine_no(+)
-      	and num >= #{rowStart} and num <= #{rowEnd}
       	and w.wine_type = #{wine_type}
-      	order by w.wine_no desc
 		]]>
 	</select>
 
-	<!-- 와인리스트 불러오기 -->
+	<!-- 와인리스트 불러오기 (정렬기능) -->
 	<select id="listPage" resultType="com.javaex.vo.WineVo"
 		parameterType="com.javaex.vo.WineVo">
 	<![CDATA[
-		select w.wine_no, 
-			   w.wine_name,
-			   w.wine_type, 
-			   w.wine_country, 
-			   w.reg_date, 
-			   d.wine_price, 
-			   d.wine_stock,
-			   d.wine_image		   
-      	from (
-        	select row_number() over (order by e.wine_no desc) as num, 
-        		   e.*
-         	from wine e
-      	) w, wine_description d
-      	where num >= #{rowStart} and num <= #{rowEnd}
-      	and w.wine_no = d.wine_no(+)
+			select w.wine_no, 
+			       w.wine_name,
+			       w.wine_type, 
+			       w.wine_country, 
+			       w.reg_date,
+			       w.wine_price, 
+			       w.wine_stock,
+			       w.wine_image
+			from (
+		]]>
+		<choose>
+			<when test="sort_type=='wine_name_up'">		<!-- 가나다순 -->
+				<![CDATA[
+				select row_number() over (order by b.wine_name) as num,
+				]]>
+			</when>
+			<when test="sort_type=='wine_name_down'">	<!-- 가나다역순 -->
+				<![CDATA[
+				select row_number() over (order by b.wine_name desc) as num,
+				]]>
+			</when>
+			<when test="sort_type=='wine_price_up'">	<!-- 낮은가격순 -->
+				<![CDATA[
+				select row_number() over (order by r.wine_price) as num,
+				]]>
+			</when>
+			<when test="sort_type=='wine_price_down'">	<!-- 높은가격순 -->
+				<![CDATA[
+				select row_number() over (order by r.wine_price desc) as num,
+				]]>
+			</when>
+			<when test="sort_type=='reg_date_up'">		<!-- 등록일순 -->
+				<![CDATA[
+				select row_number() over (order by b.reg_date) as num,
+				]]>
+			</when>
+			<when test="sort_type=='reg_date_down'">	<!-- 최신순 -->
+				<![CDATA[
+				select row_number() over (order by b.reg_date desc) as num,
+				]]>
+			</when>
+		</choose>
+		<![CDATA[
+					b.*,
+			        r.wine_price,
+			        r.wine_stock,
+			        r.wine_image
+			    from wine b, wine_description r
+			    where 1=1
+			    and b.wine_no = r.wine_no 
+			) w
+			where num >= #{rowStart} and num <= #{rowEnd}
 		]]>
 	</select>
 
@@ -95,16 +114,15 @@
 			           r.wine_stock,
 			           r.wine_image
 			    from wine b, wine_description r
-			    where 1=1
-			    and b.wine_no = r.wine_no 
+			    where b.wine_no = r.wine_no 
 		]]>
 		<if test="keyword != null and keyword != '' ">
 			<![CDATA[
-         	and (
-					   b.wine_type like '%' || #{keyword} || '%' 
-					or b.wine_name like '%' || #{keyword} || '%' 
-					or b.wine_country like '%' || #{keyword} || '%'
-				)
+         		and (
+         			b.wine_type like '%' || #{keyword} || '%' or
+         			b.wine_name like '%' || #{keyword} || '%' or
+         			b.wine_country like '%' || #{keyword} || '%'
+         		)
 			]]>
 		</if>
 		<![CDATA[
@@ -119,38 +137,6 @@
 		parameterType="com.javaex.vo.WineVo">
 		<![CDATA[
 			select w.wine_no, 
-				   w.wine_name,
-				   w.wine_type, 
-				   w.wine_country, 
-				   w.reg_date, 
-				   d.wine_price, 
-				   d.wine_stock,
-				   d.wine_image
-			from wine w, wine_description d 
-			where w.wine_no = d.wine_no(+)
-		]]>
-
-		<if test="wine_type=='레드'">
-			AND w.wine_type = '레드'
-		</if>
-		<if test="wine_type=='화이트'">
-			AND w.wine_type = '화이트'
-		</if>
-		<if test="wine_type=='로제'">
-			AND w.wine_type = '로제'
-		</if>
-		
-		<![CDATA[
-			order by w.wine_no desc
-		]]>
-
-	</select>
-
-	<!-- 와인리스트 정렬 -->
-	<select id="sortByWinelist" resultType="com.javaex.vo.WineVo"
-		parameterType="com.javaex.vo.WineVo">
-		<![CDATA[
-			select w.wine_no, 
 			       w.wine_name,
 			       w.wine_type, 
 			       w.wine_country, 
@@ -159,51 +145,23 @@
 			       w.wine_stock,
 			       w.wine_image
 			from (
-		]]>
-		<choose>
-			<when test="sort_type=='wine_name_up'">
-				<![CDATA[
-				select row_number() over (order by b.wine_name) as num,
-				]]>
-			</when>
-			<when test="sort_type=='wine_name_down'">
-				<![CDATA[
-				select row_number() over (order by b.wine_name desc) as num,
-				]]>
-			</when>
-			<when test="sort_type=='wine_price_up'">
-				<![CDATA[
-				select row_number() over (order by r.wine_price) as num,
-				]]>
-			</when>
-			<when test="sort_type=='wine_price_down'">
-				<![CDATA[
-				select row_number() over (order by r.wine_price desc) as num,
-				]]>
-			</when>
-			<when test="sort_type=='reg_date_up'">
-				<![CDATA[
-				select row_number() over (order by b.reg_date) as num,
-				]]>
-			</when>
-			<when test="sort_type=='reg_date_down'">
-				<![CDATA[
-				select row_number() over (order by b.reg_date desc) as num,
-				]]>
-			</when>
-		</choose>
-		<![CDATA[
-					b.*,
-			        r.wine_price,
-			        r.wine_stock,
-			        r.wine_image
+			    select row_number() over (order by b.wine_no desc) as num, 
+			           b.*,
+			           r.wine_price,
+			           r.wine_stock,
+			           r.wine_image
 			    from wine b, wine_description r
-			    where 1=1
-			    and b.wine_no = r.wine_no 
+			    where b.wine_no = r.wine_no 
+		]]>
+		<if test="keyword == null or keyword == '' ">
+			<![CDATA[
+         		and b.wine_type = #{wine_type}
+			]]>
+		</if>
+		<![CDATA[
 			) w
 			where num >= #{rowStart} and num <= #{rowEnd}
 		]]>
-		
 
 	</select>
 
@@ -219,8 +177,8 @@
 
 	<!-- 와인 삭제 -->
 	<delete id="delete" parameterType="com.javaex.vo.WineVo">
-		delete from wine where wine_no
-		= #{wine_no}
+		delete from wine 
+		where wine_no = #{wine_no}
 	</delete>
 
 	<!-- 상세정보 가져오기 -->

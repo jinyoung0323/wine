@@ -49,11 +49,11 @@
 			<ul
 				class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
 				<li><a href="/wine/" class="nav-link px-2 link-secondary">Home</a></li>
-				<li><a href="/wine/cate?wine_type=레드"
+				<li><a href="/wine/?keyword=${keyword}&wine_type=레드&sort_type=${sort_type}"
 					class="nav-link px-2 link-dark">red</a></li>
-				<li><a href="/wine/cate?wine_type=화이트"
+				<li><a href="/wine/?keyword=${keyword}&wine_type=화이트&sort_type=${sort_type}"
 					class="nav-link px-2 link-dark">white</a></li>
-				<li><a href="/wine/cate?wine_type=로제"
+				<li><a href="/wine/?keyword=${keyword}&wine_type=로제&sort_type=${sort_type}"
 					class="nav-link px-2 link-dark">rose</a></li>
 			</ul>
 
