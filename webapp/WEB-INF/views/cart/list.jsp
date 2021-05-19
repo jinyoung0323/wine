@@ -215,21 +215,22 @@ hr {
 
                 <div class="mt-4">
 						<div class="row text-600 text-white bgc-default-tp1 py-25">
-							<div class="d-none d-sm-block col-1">#</div>
+							<div class="d-none d-sm-block col-1">카트번호</div>
 							<div class="col-9 col-sm-5">상품명</div>
 							<div class="d-none d-sm-block col-4 col-sm-2">갯수</div>
 							<div class="d-none d-sm-block col-sm-2">상품 금액</div>
 							<div class="col-2">총 상품금액</div>
 						</div>
-						<c:forEach items="${ cart }" var="cart">
+						<c:forEach items="${cart}" var="cart">
 							<div class="text-95 text-secondary-d3">
 								<div class="row mb-2 mb-sm-0 py-25">
-									<div class="d-none d-sm-block col-1">${ cart.cart_no }</div>
-									<div class="col-9 col-sm-5">${ cart.wine_name }</div>
-									<div class="d-none d-sm-block col-2">2</div>
-									<div class="d-none d-sm-block col-2 text-95">${ cart.wine_price }원</div>
-									<div class="col-2 text-secondary-d2">$20</div>
+									<div class="d-none d-sm-block col-1">${cart.cart_no}</div>
+									<div class="col-9 col-sm-5">${cart.wine_name}</div>
+									<div class="d-none d-sm-block col-2">${cart.wine_count} 개</div>
+									<div class="d-none d-sm-block col-2 text-95">${cart.wine_price} 원</div>
+									<div class="col-2 text-secondary-d2">${cart.wine_total_price} 원</div>
 								</div>
+							</div>
 						</c:forEach>
 
 

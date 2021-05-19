@@ -1,7 +1,3 @@
-/* 1. wine 테이블 : reg_date 컬럼추가
- * 2. wine_description : wine_image 데이터타입 clob => varchar2(1000)
- * 3. cart 테이블 : seq_cart_no 시퀀스 추가
- */ 
 
 /* 회원 테이블 */
 DROP TABLE USERS;
@@ -135,3 +131,19 @@ START WITH 1;
 COMMENT ON COLUMN CART.CART_NO           IS '장바구니번호';
 COMMENT ON COLUMN CART.EMAIL             IS '이메일';
 COMMENT ON COLUMN CART.WINE_NO           IS '와인번호';
+
+ALTER TABLE CART
+ADD(WINE_COUNT NUMBER(5));			/* CART 테이블 WINE_COUNT 컬럼 추가 */
+
+ALTER TABLE CART
+ADD(WINE_TOTAL_PRICE NUMBER(10));	/* CART 테이블 WINE_TOTAL_PRICE 컬럼 추가 */
+
+ALTER TABLE CART
+MODIFY WINE_COUNT NOT NULL;			/* CART 테이블 WINE_COUNT 제약조건 NOT NULL로 변경 */
+
+ALTER TABLE CART
+MODIFY WINE_TOTAL_PRICE NOT NULL;	/* CART 테이블 WINE_TOTAL_PRICE 제약조건 NOT NULL로 변경 */
+
+
+COMMENT ON COLUMN CART.WINE_COUNT           IS '와인갯수';
+COMMENT ON COLUMN CART.WINE_TOTAL_PRICE     IS '와인총합가격';

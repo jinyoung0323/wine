@@ -59,7 +59,7 @@
 
 			<div class="col-md-3 text-end">
 				<c:choose>
-					<c:when test="${User == null }">
+					<c:when test="${User == null}">
 						<!-- 로그인 전 -->
 						<button type="button" class="btn btn-outline-primary me-2"
 							onclick="location.href='<%=request.getContextPath()%>/user/loginform'">로그인</button>

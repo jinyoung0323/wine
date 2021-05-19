@@ -7,10 +7,15 @@
 
 	<!-- 리스트 불러오기 -->
 	<select id="selectList" resultType="com.javaex.vo.CartVo">
-		SELECT c.CART_NO , w.WINE_NAME, wd.WINE_PRICE 
-		  FROM CART c ,WINE w , WINE_DESCRIPTION wd 
-         WHERE c.WINE_NO = w.WINE_NO
-           AND w.WINE_NO = wd.WINE_NO
+	<!-- cart번호, wine이름, wine갯수, wine가격, wine total가격 -->
+		select c.cart_no,
+       		   w.wine_name,
+       		   c.wine_count,
+       		   d.wine_price,
+       		   (c.wine_count*d.wine_price) wine_total_price
+		from wine w, wine_description d, cart c
+		where w.wine_no = d.wine_no
+		and   d.wine_no = c.wine_no;
 	</select>
 
 	

@@ -35,8 +35,8 @@
 						
 					<!-- 검색 -->
 					<form id="type_form" action="/wine/" method="get">
-						<input type="text" id="keyword" name="keyword" value="${keyword}"> <input
-							type="submit" value="검색">
+						<input type="text" id="keyword" name="keyword" value="${keyword}"> 
+						<input type="submit" value="검색">
 					</form>
 
 				</div>
@@ -113,7 +113,7 @@
 			<ul class="pagination">
 				<c:if test="${pageMaker.prev}">
 					<li><a
-						href="/wine/{pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+						href="/wine/${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
 				</c:if>
 
 				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"

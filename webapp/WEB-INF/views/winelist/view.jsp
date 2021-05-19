@@ -59,10 +59,8 @@
 	rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="blog.css" rel="stylesheet">
-		</head>
+</head>
 		<body>
-			<center>
-
 				<table>
 					<!-- border = "1" 붙이면 테이블 영역 볼 수 있음 -->
 					<tr align="center">
@@ -122,22 +120,20 @@
 									</c:forEach>
 								</select>&nbsp;개 <input type="submit" value="장바구니에 담기"> <input
 									type="hidden" name="wine_count" value="">
+							</form>
+						</td>	
 					</tr>
-					<tr>
-
-					</tr>
-					<br>
-					<br>
-					<br>
-					</form>
-					</center>
-					<td colspan="4" align="left"><input align="left" type="button"
-						value="돌아가기" onclick="history.back(-1);"></td>
+					<br/><br/><br/>
+					
 					<!-- 이전페이지로 돌아가기 -->
-
+					<tr>
+						<td colspan="4" align="left">
+							<input align="left" type="button" value="돌아가기" 
+							onclick="history.back(-1);">
+						</td>
+					</tr>
 
 				</table>
-
 
 				<!-- footer -->
 				<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>

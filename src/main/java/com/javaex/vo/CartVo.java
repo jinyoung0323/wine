@@ -2,24 +2,15 @@ package com.javaex.vo;
 
 public class CartVo {
 	
-	private int cart_no;		// 장바구니 번호
-	private String email;		// 이메일
-	private int wine_no;		// 와인번호
-	private String wine_name;	// 와인이름
-	private int wine_price;		// 와인가격
+	private int cart_no;			// 장바구니 번호
+	private String email;			// 이메일
+	private int wine_no;			// 와인번호
+	private String wine_name;		// 와인이름
+	private int wine_count;			// 와인 갯수
+	private int wine_price;			// 와인 가격
+	private int wine_total_price;	// 와인 총합 가격
 
-	public String getWine_name() {
-		return wine_name;
-	}
-	public void setWine_name(String wine_name) {
-		this.wine_name = wine_name;
-	}
-	public int getWine_price() {
-		return wine_price;
-	}
-	public void setWine_price(int wine_price) {
-		this.wine_price = wine_price;
-	}
+	
 	public int getCart_no() {
 		return cart_no;
 	}
@@ -38,20 +29,45 @@ public class CartVo {
 	public void setWine_no(int wine_no) {
 		this.wine_no = wine_no;
 	}
+	public String getWine_name() {
+		return wine_name;
+	}
+	public void setWine_name(String wine_name) {
+		this.wine_name = wine_name;
+	}
+	public int getWine_count() {
+		return wine_count;
+	}
+	public void setWine_count(int wine_count) {
+		this.wine_count = wine_count;
+	}
+	public int getWine_price() {
+		return wine_price;
+	}
+	public void setWine_price(int wine_price) {
+		this.wine_price = wine_price;
+	}
+	public int getWine_total_price() {
+		return wine_total_price;
+	}
+	public void setWine_total_price(int wine_total_price) {
+		this.wine_total_price = wine_total_price;
+	}
 	
-	public CartVo(int cart_no, String email, int wine_no, String wine_name, int wine_price) {
+	
+	public CartVo(int cart_no, String email, int wine_no, String wine_name, int wine_total_price) {
 		super();
 		this.cart_no = cart_no;
 		this.email = email;
 		this.wine_no = wine_no;
 		this.wine_name = wine_name;
-		this.wine_price = wine_price;
+		this.wine_total_price = wine_total_price;
 	}
-	public CartVo(int cart_no, String wine_name, int wine_price) {
+	public CartVo(int cart_no, String wine_name, int wine_total_price) {
 		super();
 		this.cart_no = cart_no;
 		this.wine_name = wine_name;
-		this.wine_price = wine_price;
+		this.wine_total_price = wine_total_price;
 	}
 	public CartVo(int cart_no, String email) {
 		super();
@@ -61,10 +77,13 @@ public class CartVo {
 	public CartVo() {
 		super();
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "CartVo [cart_no=" + cart_no + ", email=" + email + ", wine_no=" + wine_no + ", wine_name=" + wine_name
-				+ ", wine_price=" + wine_price + "]";
+				+ ", wine_count=" + wine_count + ", wine_price=" + wine_price + ", wine_total_price=" + wine_total_price
+				+ "]";
 	}
 	
 
