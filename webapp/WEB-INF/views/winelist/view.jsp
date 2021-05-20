@@ -66,10 +66,6 @@
 					<!-- border = "1" 붙이면 테이블 영역 볼 수 있음 -->
 					<tr align="center">
 						<td rowspan="8"><img align="center" src="${wineList.wine_image}" width="300" height="300"></td>
-						<!-- 앞페이지에서 받아온 그림 세로로 8칸 합쳤음 -->
-						<td><b>상품번호 : </b></td>
-						<td></td>
-						<td>${wineList.wine_no}</td>
 						<!-- wineList -> WineController의 상세페이지 부분 mav.addObject("wineList", wineVo);에서 가져옴  -->
 					</tr>
 					<tr align="center">
@@ -81,7 +77,7 @@
 						<td><b>가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;격 : </b></td>
 						<td></td>
 						<td><fmt:formatNumber value="${wineList.wine_price}"
-								pattern="###,###,###" /></td>
+								pattern="###,###,###" />원</td>
 					</tr>
 					<tr align="center">
 						<td><b>국&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가 : </b></td>
@@ -96,12 +92,12 @@
 					<tr align="center">
 						<td><b>도&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수 : </b></td>
 						<td></td>
-						<td>${wineList.wine_alcohol}</td>
+						<td>${wineList.wine_alcohol}%</td>
 					</tr>
 					<tr align="center">
 						<td><b>재&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;고 : </b></td>
 						<td></td>
-						<td>${wineList.wine_stock}</td>
+						<td>${wineList.wine_stock}개</td>
 					</tr>
 					<tr align="center">
 						<td><b>상품소개 : </b></td>
@@ -124,19 +120,36 @@
 						</td>	
 					</tr>
 					<br/><br/><br/>
-					
-					<!-- 이전페이지로 돌아가기 -->
+						<!-- 이전페이지로 돌아가기 -->
 					<tr>
 						<td colspan="4" align="left">
 							<input align="left" type="button" value="돌아가기" 
-							onclick="history.back(-1);">
+							onclick="history.back(-1);">&nbsp;
+						<!-- 관리자 -->
+							<c:if test="${User.grade == 2}">
+									<input align="left" type="button" value="삭제" 
+							onclick="button_event(${wineList.wine_no})" class="wineDelete">
+							</c:if>
 						</td>
 					</tr>
 
 				</table>
 				</center>
-
+ 
 				<!-- footer -->
 				<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		</body>
+		
+		<script type="text/javascript">
+		
+		function button_event(no) {
+			if (confirm("삭제 하시겠습니까?") == true) { //확인
+				window.location = "/wine/wineDelete?wine_no=" + no;
+			} else { //취소
+				return;
+			}
+		}
+	
+	
+</script>
 </html>

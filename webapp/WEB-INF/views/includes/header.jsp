@@ -87,9 +87,9 @@
 									관리자님&nbsp;&nbsp;&nbsp;
 									<button type="button"
 											class="btn btn-outline-primary btn-lg"
-											onclick="location.href='<%=request.getContextPath()%>/wineRegist'">등록</button>
+											onclick="location.href='<%=request.getContextPath()%>/wineRegist'">등록</button>&nbsp;
 									<button type="button" class="btn btn-primary btn-lg"
-											onclick="location.href='<%=request.getContextPath()%>/user/logout'">Sign-out</button>
+											onclick="location.href='<%=request.getContextPath()%>/user/logout'">Sign-out</button>&nbsp;
 							</c:if>
 						</table>
 					</c:otherwise>

@@ -37,7 +37,7 @@ a:active {
 
 a:hover {
 	text-decoration: underline;
-	color: red;
+	color: black;
 }
 
 </style>
@@ -96,7 +96,6 @@ a:hover {
 								</a>
 
 									<div class="card-body">
-										<p class="card-text">와인번호 : ${winelist.wine_no}</p>
 										<p class="card-text">와인명 : ${winelist.wine_name}</p>
 										<p class="card-text">
 											와인타입 :
