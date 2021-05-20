@@ -61,11 +61,11 @@
 <link href="blog.css" rel="stylesheet">
 </head>
 		<body>
+		<center>
 				<table>
 					<!-- border = "1" 붙이면 테이블 영역 볼 수 있음 -->
 					<tr align="center">
-						<td rowspan="8"><img align="center"
-							src="${wineList.wine_image}" width="300" height="300"></td>
+						<td rowspan="8"><img align="center" src="${wineList.wine_image}" width="300" height="300"></td>
 						<!-- 앞페이지에서 받아온 그림 세로로 8칸 합쳤음 -->
 						<td><b>상품번호 : </b></td>
 						<td></td>
@@ -134,6 +134,7 @@
 					</tr>
 
 				</table>
+				</center>
 
 				<!-- footer -->
 				<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>

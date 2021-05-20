@@ -12,8 +12,7 @@
 <!-- Bootstrap core CSS -->
 <link href="/wine/assets/bootstrap_assets/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-
-<style>
+ <style>
 .bd-placeholder-img {
 	font-size: 1.125rem;
 	text-anchor: middle;
@@ -40,30 +39,30 @@
 	<div class="container">
 		<header
 			class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-			<a href="/"
+			<a href="/wine/"
 				class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
 				<svg class="bi me-2" width="40" height="32">
-               <use xlink:href="#bootstrap" /></svg>
+               <!-- <use xlink:href="#bootstrap" /></svg> -->
 			</a>
 
 			<ul
 				class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-				<li><a href="/wine/" class="nav-link px-2 link-secondary">Home</a></li>
-				<li><a href="/wine/?keyword=${keyword}&wine_type=레드&sort_type=${sort_type}"
-					class="nav-link px-2 link-dark">red</a></li>
-				<li><a href="/wine/?keyword=${keyword}&wine_type=화이트&sort_type=${sort_type}"
-					class="nav-link px-2 link-dark">white</a></li>
-				<li><a href="/wine/?keyword=${keyword}&wine_type=로제&sort_type=${sort_type}"
-					class="nav-link px-2 link-dark">rose</a></li>
+				<li><h2><a href="/wine/" class="nav-link px-2 link-secondary">Home</a></h2></li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<li><h2><a href="/wine/?keyword=${keyword}&wine_type=레드&sort_type=${sort_type}"
+					class="nav-link px-2 link-dark">red</a></h2></li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<li><h2><a href="/wine/?keyword=${keyword}&wine_type=화이트&sort_type=${sort_type}"
+					class="nav-link px-2 link-dark">white</a></h2></li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<li><h2><a href="/wine/?keyword=${keyword}&wine_type=로제&sort_type=${sort_type}"
+					class="nav-link px-2 link-dark">rose</a></h2></li>
 			</ul>
 
 			<div class="col-md-3 text-end">
 				<c:choose>
-					<c:when test="${User == null}">
+					<c:when test="${User == null }">
 						<!-- 로그인 전 -->
-						<button type="button" class="btn btn-outline-primary me-2"
+						<button type="button" class="btn btn-outline-primary btn-lg"
 							onclick="location.href='<%=request.getContextPath()%>/user/loginform'">로그인</button>
-						<button type="button" class="btn btn-primary"
+						<button type="button" class="btn btn-primary btn-lg"
 							onclick="location.href='<%=request.getContextPath()%>/user/joinform'">회원가입</button>
 
 					</c:when>
@@ -74,10 +73,10 @@
 							<c:if test="${User.grade == 1}">
 								${User.nick_name }&nbsp;님 &nbsp;&nbsp;&nbsp;
 								<button type="button"
-											class="btn btn-outline-primary me-2"
+											class="btn btn-outline-primary btn-lg"
 											onclick="location.href='<%=request.getContextPath()%>/user/modifyform'">회원정보수정</button>
 								<button type="button"
-											class="btn btn-outline-primary me-2"
+											class="btn btn-outline-primary btn-lg"
 											onclick="location.href='<%=request.getContextPath()%>/user/logout'">로그아웃</button>
 							</c:if>
 						</table>
@@ -87,9 +86,9 @@
 							<c:if test="${User.grade == 2}">
 									관리자님&nbsp;&nbsp;&nbsp;
 									<button type="button"
-											class="btn btn-outline-primary me-2"
+											class="btn btn-outline-primary btn-lg"
 											onclick="location.href='<%=request.getContextPath()%>/wineRegist'">등록</button>
-									<button type="button" class="btn btn-primary"
+									<button type="button" class="btn btn-primary btn-lg"
 											onclick="location.href='<%=request.getContextPath()%>/user/logout'">Sign-out</button>
 							</c:if>
 						</table>

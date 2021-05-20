@@ -31,7 +31,7 @@ public class WineVo {
 	// 디폴트
 	public WineVo() {
 		this.page = 1;
-		this.perPageNum = 3;
+		this.perPageNum = 4;
 	}
 
 
