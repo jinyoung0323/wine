@@ -12,10 +12,11 @@ import com.javaex.vo.FileVo;
 
 public class FileUtils {
 
-	public FileVo fileUpload(MultipartFile file, String path) {
+	public FileVo fileUpload(MultipartFile file) {
 
-		String saveDir = path + "assets\\image";
-		//String saveDir = "/wine/webapp/assets/image";
+		//첫번재 따움표를 본인 git로컬저장소 경로로 바꿔서 실행 : project우클릭>properties>Location확인
+		String saveDir = "C:/Users/user/git"+"/wine/webapp/assets/image";
+		
 		System.out.println(saveDir);
 
 		// 원파일이름
@@ -28,7 +29,7 @@ public class FileUtils {
 		String saveName = UUID.randomUUID().toString()+"_" + orgName;
 
 		//파일패스 생성
-		String filePath = saveDir + "\\" + saveName;
+		String filePath = saveDir + "/" + saveName;
 		System.out.println(filePath);
 		
 		//파일 사이즈

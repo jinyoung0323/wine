@@ -47,12 +47,12 @@
     margin-bottom: 1.5rem!important;
 }
 
-hr {
+/* hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
     border: 0;
     border-top: 1px solid rgba(0,0,0,.1);
-}
+} */
 
 .text-grey-m2 {
     color: #888a8d!important;
@@ -149,7 +149,7 @@ hr {
             </small>
         </h1>
 
-        <div class="page-tools">
+       <!--  <div class="page-tools">
             <div class="action-buttons">
                 <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="Print">
                     <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2"></i>
@@ -160,7 +160,7 @@ hr {
                     Export
                 </a>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="container px-0">
@@ -168,15 +168,15 @@ hr {
             <div class="col-12 col-lg-10 offset-lg-1">
                 <div class="row">
                     <div class="col-12">
-                        <div class="text-center text-150">
+                        <!-- <div class="text-center text-150">
                             <i class="fa fa-book fa-2x text-success-m2 mr-1"></i>
                             <span class="text-default-d3">Bootdey.com</span>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- .row -->
 
-                <hr class="row brc-default-l1 mx-n1 mb-4" />
+               <!--  <hr class="row brc-default-l1 mx-n1 mb-4" /> -->
 
                 <div class="row">
                     <div class="col-sm-6">
@@ -199,7 +199,7 @@ hr {
                     <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
                         <hr class="d-sm-none" />
                         <div class="text-grey-m2">
-                            <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
+                           <!--  <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
                                 Invoice
                             </div>
 
@@ -207,7 +207,7 @@ hr {
 
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Issue Date:</span> Oct 12, 2019</div>
 
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Status:</span> <span class="badge badge-warning badge-pill px-25">Unpaid</span></div>
+                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Status:</span> <span class="badge badge-warning badge-pill px-25">Unpaid</span></div> -->
                         </div>
                     </div>
                     <!-- /.col -->
