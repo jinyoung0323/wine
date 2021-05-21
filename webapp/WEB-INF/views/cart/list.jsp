@@ -126,11 +126,18 @@
 }
 </style>
 
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<script type="text/javascript">
+
+function order() {
+	alert("결제페이지로 이동합니다.");
+}
+
+</script>
 
 </head>
 <body>
@@ -140,7 +147,7 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <div class="page-content container">
-    <div class="page-header text-blue-d2">
+   <!--  <div class="page-header text-blue-d2">
         <h1 class="page-title text-secondary-d1">
             Invoice
             <small class="page-info">
@@ -149,7 +156,7 @@
             </small>
         </h1>
 
-       <!--  <div class="page-tools">
+        <div class="page-tools">
             <div class="action-buttons">
                 <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="Print">
                     <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2"></i>
@@ -160,9 +167,9 @@
                     Export
                 </a>
             </div>
-        </div> -->
+        </div>
     </div>
-
+ -->
     <div class="container px-0">
         <div class="row mt-4">
             <div class="col-12 col-lg-10 offset-lg-1">
@@ -302,8 +309,8 @@
                     <hr />
 
                     <div>
-                        <span class="text-secondary-d1 text-105">Thank you for your business</span>
-                        <a href="#" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Pay Now</a>
+                        <!-- <span class="text-secondary-d1 text-105">Thank you for your business</span> -->
+                        <a href="#" class="btn btn-info btn-bold px-10 float-right mt-3 mt-lg-0" onclick="order()">결제하기</a>
                     </div>
                 </div>
             </div>
