@@ -25,6 +25,7 @@ public class WineVo {
 	private int perPageNum;				// 한 페이지 당 갯수
 	private int pageNo;					// 페이지 번호
 	private int totalCount;				// 게시글 총 갯수
+	private String email;				// 이메일
 
 	/* 생성자 */
 
@@ -63,6 +64,13 @@ public class WineVo {
 	public WineVo(String wine_type) {
 		super();
 		this.wine_type = wine_type;
+	}
+	
+	// 와인재고 감소위한 생성자
+	public WineVo(int wine_no, int wine_stock) {
+		super();
+		this.wine_no = wine_no;
+		this.wine_stock = wine_stock;
 	}
 
 //	// 정렬 생성자
@@ -245,6 +253,14 @@ public class WineVo {
 
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	/* toString() */

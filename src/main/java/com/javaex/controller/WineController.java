@@ -33,18 +33,6 @@ public class WineController {
 
 		return "winelist/view_admin";
 	}
-
-//	// 와인 등록
-//	@RequestMapping(value = "/wineInsert", method = RequestMethod.POST)
-//	public String regist(@ModelAttribute WineVo wineVo, HttpServletRequest request) {
-//		System.out.println("addWine");
-//		String path = request.getSession().getServletContext().getRealPath("/");
-//		//String path2 = application.getRealPath(fileName)
-//		System.out.println(path);
-//		wineDao.insert(wineVo, path);
-//
-//		return "redirect:/";
-//	}
 	
 	// 와인 등록
 	@RequestMapping(value = "/wineInsert", method = RequestMethod.POST)

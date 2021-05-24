@@ -4,19 +4,53 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="CartXml">
-
+	
+	<!-- 장바구니 추가 -->
+	<insert id="insert" parameterType="com.javaex.vo.CartVo">
+		<![CDATA[	
+			INSERT INTO CART
+			(CART_NO, EMAIL, WINE_NO, WINE_COUNT, WINE_TOTAL_PRICE)
+			
+			SELECT SEQ_CART_NO.NEXTVAL,
+				   #{email},
+				   #{wine_no},
+				   #{wine_count},
+				   (#{wine_count}*#{wine_price}) WINE_TOTAL_PRICE
+				   
+			  FROM WINE W, WINE_DESCRIPTION D
+			 WHERE W.WINE_NO = D.WINE_NO
+			   AND W.WINE_NO = #{wine_no}
+		]]>
+	</insert>	
+	
 	<!-- 리스트 불러오기 -->
 	<select id="selectList" resultType="com.javaex.vo.CartVo">
 	<!-- cart번호, wine이름, wine갯수, wine가격, wine total가격 -->
-		select c.cart_no,
-       		   w.wine_name,
-       		   c.wine_count,
-       		   d.wine_price,
-       		   (c.wine_count*d.wine_price) wine_total_price
-		from wine w, wine_description d, cart c
-		where w.wine_no = d.wine_no
-		and   d.wine_no = c.wine_no;
+		SELECT C.CART_NO,
+			   W.WINE_NO,
+			   C.EMAIL,
+			   W.WINE_NAME,
+			   C.WINE_COUNT,
+			   D.WINE_PRICE,
+			   (C.WINE_COUNT*D.WINE_PRICE) WINE_TOTAL_PRICE
+			   
+		  FROM WINE W, WINE_DESCRIPTION D, CART C
+		 WHERE W.WINE_NO = D.WINE_NO
+		   AND D.WINE_NO = C.WINE_NO
 	</select>
+	
+	<!-- 장바구니 삭제 -->
+	<delete id="deleteByNo" parameterType="com.javaex.vo.CartVo">
+		<![CDATA[
+		DELETE FROM CART WHERE WINE_NO = #{wine_no}
+		]]>
+	</delete>
 
+	<!-- 결제창 이동(장바구니 전체삭제) -->
+	<delete id="deleteAll" parameterType="com.javaex.vo.CartVo">
+		<![CDATA[
+		DELETE FROM CART
+		]]>
+	</delete>
 	
 </mapper>

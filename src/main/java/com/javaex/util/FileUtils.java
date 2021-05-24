@@ -15,7 +15,7 @@ public class FileUtils {
 	public FileVo fileUpload(MultipartFile file) {
 
 		//첫번재 따움표를 본인 git로컬저장소 경로로 바꿔서 실행 : project우클릭>properties>Location확인
-		String saveDir = "C:/Users/user/git"+"/wine/webapp/assets/image";
+		String saveDir = "C:/Users/1강의실/git"+"/wine/webapp/assets/bootstrap_assets/image";
 		
 		System.out.println(saveDir);
 

@@ -21,8 +21,8 @@ public class MainController {
 	 /* <와인 검색 & 타입 & 정렬 기능> */
  
 	 /* wine_type : 와인 타입 - 레드, 화이트, 로제 (디폴트 = "")
-	 * keyword : 검색 키워드 (디폴트 = "")
-	 * sort_type : 정렬 타입 - 날짜, 가나다, 가격 => 오름/내림차순 (디폴트 = "최신순")
+	 *  keyword   : 검색 키워드 (디폴트 = "")
+	 *  sort_type : 정렬 타입 - 날짜, 가나다, 가격 => 오름/내림차순 (디폴트 = "최신순")
 	 */
 	@RequestMapping("/")
 	public ModelAndView getSearch(HttpServletRequest request, ModelAndView mav,
