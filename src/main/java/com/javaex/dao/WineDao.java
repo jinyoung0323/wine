@@ -48,7 +48,7 @@ public class WineDao {
 		return sqlSession.selectList("WineXml.listCateByType", wineVo);
 	}
 
-	
+	// 와인 추가
 	public int insert(WineVo wineVo) {
 
 		System.out.println(wineVo.toString());
@@ -66,25 +66,6 @@ public class WineDao {
 
 		return sqlSession.insert("WineXml.insert", wineVo);
 	}
-
-//	// 와인 추가
-//	public int insert(WineVo wineVo, String path) {
-//
-//		System.out.println(wineVo.toString());
-//		// jsp에서 넘어온 등록할 정보들 중에서 file명을 추출
-//		MultipartFile file = wineVo.getFile();
-//		System.out.println(file.toString());
-//		FileVo fileVo;
-//
-//		if (!file.isEmpty()) {
-//			FileUtils fileUtil = new FileUtils();
-//			fileVo = fileUtil.fileUpload(file, path);
-//			// 가능?
-//			wineVo.setWine_image(fileVo.getFilePath());
-//		}
-//
-//		return sqlSession.insert("WineXml.insert", wineVo);
-//	}
 
 	// 와인 삭제
 	public void delete(WineVo wineVo) {

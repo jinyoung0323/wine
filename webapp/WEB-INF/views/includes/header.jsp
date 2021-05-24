@@ -78,6 +78,9 @@
 								<button type="button"
 											class="btn btn-outline-primary btn-lg"
 											onclick="location.href='<%=request.getContextPath()%>/user/logout'">로그아웃</button>
+								<button type="button"
+											class="btn btn-outline-primary btn-lg"
+											onclick="location.href='<%=request.getContextPath()%>/cart'">장바구니</button>			
 							</c:if>
 						</table>
 

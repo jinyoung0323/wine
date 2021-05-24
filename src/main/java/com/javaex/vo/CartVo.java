@@ -69,15 +69,18 @@ public class CartVo {
 		this.wine_name = wine_name;
 		this.wine_total_price = wine_total_price;
 	}
-	public CartVo(int cart_no, String email) {
+	public CartVo(int wine_no, String email) {
 		super();
-		this.cart_no = cart_no;
+		this.wine_no = wine_no;
 		this.email = email;
 	}
 	public CartVo() {
 		super();
 	}
-	
+	public CartVo(String email) {
+		super();
+		this.email = email;
+	}
 	
 	@Override
 	public String toString() {

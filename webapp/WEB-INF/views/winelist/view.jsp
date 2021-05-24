@@ -59,87 +59,85 @@
 	rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="blog.css" rel="stylesheet">
-</head>
+		</head>
 		<body>
-		<center>
+			<center>
 				<table>
-					<!-- border = "1" 붙이면 테이블 영역 볼 수 있음 -->
-					<tr align="center">
-						<td rowspan="8"><img align="center" src="${wineList.wine_image}" width="300" height="300"></td>
-						<!-- wineList -> WineController의 상세페이지 부분 mav.addObject("wineList", wineVo);에서 가져옴  -->
-					</tr>
-					<tr align="center">
-						<td><b>상 품 명 : </b></td>
-						<td></td>
-						<td>${wineList.wine_name}</td>
-					</tr>
-					<tr align="center">
-						<td><b>가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;격 : </b></td>
-						<td></td>
-						<td><fmt:formatNumber value="${wineList.wine_price}"
-								pattern="###,###,###" />원</td>
-					</tr>
-					<tr align="center">
-						<td><b>국&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가 : </b></td>
-						<td></td>
-						<td>${wineList.wine_country}</td>
-					</tr>
-					<tr align="center">
-						<td><b>제 조 사 : </b></td>
-						<td></td>
-						<td>${wineList.wine_company}</td>
-					</tr>
-					<tr align="center">
-						<td><b>도&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수 : </b></td>
-						<td></td>
-						<td>${wineList.wine_alcohol}%</td>
-					</tr>
-					<tr align="center">
-						<td><b>재&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;고 : </b></td>
-						<td></td>
-						<td>${wineList.wine_stock}개</td>
-					</tr>
-					<tr align="center">
-						<td><b>상품소개 : </b></td>
-						<td></td>
-						<td>${wineList.wine_description}</td>
-					</tr>
-					<tr align="right">
-						<td colspan="4"><br> <br>
-							<form name="form1" method="post" action="/wine/cart">
-								<!-- 카트로 넘겨주기 위한 form -->
+					<form name="form1" action="/wine/cartInsert">
+						<!-- border = "1" 붙이면 테이블 영역 볼 수 있음 -->
+						<tr align="center">
+							<td rowspan="8"><img align="center"
+								src="${wineList.wine_image}" width="300" height="300"></td>
+							<!-- wineList : WineController의 상세페이지 부분 mav.addObject("wineList", wineVo);에서 가져옴  -->
+						</tr>
+						<tr align="center">
+							<td><b>상 품 명 : </b></td>
+							<td></td>
+							<td>${wineList.wine_name}</td>
+						</tr>
+						<tr align="center">
+							<td><b>가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;격 : </b></td>
+							<td></td>
+							<td><fmt:formatNumber value="${wineList.wine_price}"
+									pattern="###,###,###" />원</td>
+						</tr>
+						<tr align="center">
+							<td><b>국&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가 : </b></td>
+							<td></td>
+							<td>${wineList.wine_country}</td>
+						</tr>
+						<tr align="center">
+							<td><b>제 조 사 : </b></td>
+							<td></td>
+							<td>${wineList.wine_company}</td>
+						</tr>
+						<tr align="center">
+							<td><b>도&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수 : </b></td>
+							<td></td>
+							<td>${wineList.wine_alcohol}%</td>
+						</tr>
+						<tr align="center">
+							<td><b>재&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;고 : </b></td>
+							<td></td>
+							<td>${wineList.wine_stock}개</td>
+						</tr>
+						<tr align="center">
+							<td><b>상품소개 : </b></td>
+							<td></td>
+							<td>${wineList.wine_description}</td>
+						</tr>
+						<tr align="right">
+							<td colspan="4"><br> <br> <!-- 장바구니에 담기 : cartInsert -->
+								<input type="hidden" name="wine_price" value="${wineList.wine_price}">
+								<input type="hidden" name="email" value="${User.email}">
 								<input type="hidden" name="wine_no" value="${wineList.wine_no}">
-								<select name="amount">
+								<select name="wine_count">
 									<!-- 선택 갯수 -->
-									<c:forEach begin="1" end="10" var="i">
+									<c:forEach begin="1" end="5" var="i">
 										<option value="${i}">${i}</option>
 									</c:forEach>
-								</select>&nbsp;개 <input type="submit" value="장바구니에 담기"> <input
-									type="hidden" name="wine_count" value="">
-							</form>
-						</td>	
-					</tr>
-					<br/><br/><br/>
-						<!-- 이전페이지로 돌아가기 -->
-					<tr>
-						<td colspan="4" align="left">
-							<input align="left" type="button" value="돌아가기" 
-							onclick="history.back(-1);">&nbsp;
-						<!-- 관리자 -->
-							<c:if test="${User.grade == 2}">
-									<input align="left" type="button" value="삭제" 
-							onclick="button_event(${wineList.wine_no})" class="wineDelete">
-							</c:if>
-						</td>
-					</tr>
-
+							</select>&nbsp;개 <input type="submit" value="장바구니에 담기"> 
+							
+							</td>
+						</tr>
+						<br /><br /><br />
+					</form>
 				</table>
-				</center>
- 
-				<!-- footer -->
-				<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+				<!-- 이전페이지로 돌아가기 -->
+				<tr>
+					<td colspan="4" align="left"><input align="left" type="button"
+						value="돌아가기" onclick="history.back(-1);">&nbsp; <!-- 관리자 -->
+						<c:if test="${User.grade == 2}">
+							<input align="left" type="button" value="삭제"
+								onclick="button_event(${wineList.wine_no})" class="wineDelete">
+						</c:if></td>
+				</tr>
+			</center>
+
+			<!-- footer -->
+			<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		</body>
-		
+
 		<script type="text/javascript">
 		
 		function button_event(no) {
