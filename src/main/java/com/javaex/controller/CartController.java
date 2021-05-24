@@ -56,7 +56,7 @@ public class CartController {
 
 	// 결제창 이동(장바구니 삭제 + 와인재고 갯수만큼 감소)
 	@RequestMapping(value = "/pay")
-	public String pay(@ModelAttribute CartVo cartVo,ModelAndView mav, @RequestParam(value = "email")String email) {
+	public String pay(@ModelAttribute CartVo cartVo, ModelAndView mav, @RequestParam(value = "email")String email) {
 		System.out.println("pay");
 		
 		System.out.println(email);

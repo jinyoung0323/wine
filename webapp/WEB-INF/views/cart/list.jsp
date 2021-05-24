@@ -264,6 +264,7 @@ a:hover {
 							<div class="d-none d-sm-block col-sm-2">상품 금액</div>
 							<div class="col-2">총 상품금액</div>
 						</div>
+						<c:set var="sum" value="0" />
 						<c:forEach items="${cart}" var="cart">
 							<div class="text-95 text-secondary-d3">
 								<div class="row mb-2 mb-sm-0 py-25">
@@ -288,6 +289,7 @@ a:hover {
 									</c:if>
 								</div>
 							</div>
+							<c:set var="sum" value="${sum + (cart.wine_total_price)}" />
 						</c:forEach>
 
 
@@ -321,29 +323,10 @@ a:hover {
             -->
 
 						<div class="row mt-3">
-							<div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
-								Extra note such as company or payment information...</div>
-
-							<div
-								class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
-								<div class="row my-2">
-									<div class="col-7 text-right">SubTotal</div>
-									<div class="col-5">
-										<span class="text-120 text-secondary-d1">$2,250</span>
-									</div>
-								</div>
-
-								<div class="row my-2">
-									<div class="col-7 text-right">Tax (10%)</div>
-									<div class="col-5">
-										<span class="text-110 text-secondary-d1">$225</span>
-									</div>
-								</div>
-
 								<div class="row my-2 align-items-center bgc-primary-l3 p-2">
-									<div class="col-7 text-right">Total Amount</div>
+									<div class="col-7 text-right">최종합계금액</div>
 									<div class="col-5">
-										<span class="text-150 text-success-d3 opacity-2">$2,475</span>
+										<fmt:formatNumber value="${sum}" pattern="#,###" />원
 									</div>
 								</div>
 							</div>
