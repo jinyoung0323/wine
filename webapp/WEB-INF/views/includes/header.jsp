@@ -30,7 +30,7 @@
 
 
 <!-- Custom styles for this template -->
-<link href="headers.css" rel="stylesheet">
+<link href="/wine/assets/headers/headers.css" rel="stylesheet">
 </head>
 <body>
 

@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="/mysite2/assets/css/user.css" rel="stylesheet" type="text/css">
+<!-- 	<link href="/wine/assets/css/user.css" rel="stylesheet" type="text/css"> -->
 	<title>로그인 Form</title>
 </head>
 <body>
@@ -42,9 +42,9 @@
 }
 </style>
 
-
+<%-- <%=request.getContextPath()%> --%>
 <!-- Custom styles for this template -->
-<link href="signin.css" rel="stylesheet">
+<!-- <link href="signin.css" rel="stylesheet"> -->
 		</head>
 		<body class="text-center">
     
