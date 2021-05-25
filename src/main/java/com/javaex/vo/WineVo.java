@@ -13,7 +13,7 @@ public class WineVo {
 	private String wine_image; 			// 와인이미지
 	private String search_type; 		// 검색 타입
 	private String keyword; 			// 검색 키워드
-	private String sort_type; 		// 정렬 타입
+	private String sort_type; 			// 정렬 타입
 	private String wine_company; 		// 제조회사
 	private int wine_alcohol; 			// 알코올도수
 	private String wine_description; 	// 와인 상세설명
@@ -72,13 +72,6 @@ public class WineVo {
 		this.wine_no = wine_no;
 		this.wine_stock = wine_stock;
 	}
-
-//	// 정렬 생성자
-//	public WineVo(String order_by_type) {
-//		super();
-//		this.order_by_type = order_by_type;
-//	}
-	/* Getter, Setter */
 
 	public int getWine_no() {
 		return wine_no;

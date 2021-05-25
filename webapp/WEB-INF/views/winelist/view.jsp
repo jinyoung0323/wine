@@ -8,7 +8,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>상세페이지</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 </head>
 <body>
@@ -20,11 +19,6 @@
 
 		<head>
 <meta charset="utf-8">
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
-<!--    <meta name="description" content="">-->
-<!--    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">-->
-<!--    <meta name="generator" content="Hugo 0.82.0">-->
-<title>Blog Template · Bootstrap v5.0</title>
 
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.0/examples/blog/">
@@ -35,24 +29,6 @@
 <link href="/wine/assets/bootstrap_assets/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 
-<!--    <style>-->
-<!--      .bd-placeholder-img {-->
-<!--        font-size: 1.125rem;-->
-<!--        text-anchor: middle;-->
-<!--        -webkit-user-select: none;-->
-<!--        -moz-user-select: none;-->
-<!--        user-select: none;-->
-<!--      }-->
-
-<!--      @media (min-width: 768px) {-->
-<!--        .bd-placeholder-img-lg {-->
-<!--          font-size: 3.5rem;-->
-<!--        }-->
-<!--      }-->
-<!--    </style>-->
-
-
-<!-- Custom styles for this template -->
 <!-- css 적용불가로 각 한글 마다 굵은글씨 되게 넣어줄것! -->
 <link
 	href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap"
@@ -109,7 +85,7 @@
 						<tr align="right">
 						
 							<td colspan="4"><br> <br> <!-- 장바구니에 담기 : cartInsert -->
-							<c:if test="${User.email != null }">
+							<c:if test="${User.email != null}">
 								<input type="hidden" name="wine_price" value="${wineList.wine_price}">
 								<input type="hidden" name="email" value="${User.email}">
 								<input type="hidden" name="wine_no" value="${wineList.wine_no}">

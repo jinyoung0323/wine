@@ -29,6 +29,7 @@ public class UserDao {
 		return sqlSession.update("UserXml.update", userVo);
 	}
 
+	// 이메일 찾기
 	public UserVo searchemail(UserVo userVo) {
 		System.out.println(userVo);
 		

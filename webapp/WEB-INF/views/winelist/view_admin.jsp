@@ -60,7 +60,6 @@
 					</div>
 
 					<div class="col-md-10">
-						<!--   <form action="/wine/wineInsert" method="post"> -->
 						<div
 							class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 							<div>

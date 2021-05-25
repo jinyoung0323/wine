@@ -47,18 +47,37 @@
 
 			<ul
 				class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-				<li><h2><a href="/wine/" class="nav-link px-2 link-secondary">Home</a></h2></li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-				<li><h2><a href="/wine/?keyword=${keyword}&wine_type=레드&sort_type=${sort_type}"
-					class="nav-link px-2 link-dark">red</a></h2></li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-				<li><h2><a href="/wine/?keyword=${keyword}&wine_type=화이트&sort_type=${sort_type}"
-					class="nav-link px-2 link-dark">white</a></h2></li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-				<li><h2><a href="/wine/?keyword=${keyword}&wine_type=로제&sort_type=${sort_type}"
-					class="nav-link px-2 link-dark">rose</a></h2></li>
+				<li>
+					<h2>
+						<a href="/wine/" class="nav-link px-2 link-secondary">Home</a>
+					</h2>
+				</li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<li>
+					<h2>
+						<a href="/wine/?keyword=${keyword}&wine_type=레드&sort_type=${sort_type}"
+						class="nav-link px-2 link-dark">red
+						</a>
+					</h2>
+				</li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<li>
+					<h2>
+						<a href="/wine/?keyword=${keyword}&wine_type=화이트&sort_type=${sort_type}"
+						class="nav-link px-2 link-dark">white
+						</a>
+					</h2>
+				</li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<li>
+					<h2>
+						<a href="/wine/?keyword=${keyword}&wine_type=로제&sort_type=${sort_type}"
+						class="nav-link px-2 link-dark">rose
+						</a>
+					</h2>
+				</li>
 			</ul>
 
 			<div class="col-md-3 text-end">
 				<c:choose>
-					<c:when test="${User == null }">
+					<c:when test="${User == null}">
 						<!-- 로그인 전 -->
 						<button type="button" class="btn btn-outline-primary btn-lg"
 							onclick="location.href='<%=request.getContextPath()%>/user/loginform'">로그인</button>

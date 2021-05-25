@@ -11,8 +11,7 @@
 <html>
 <head>
 <!-- Bootstrap core CSS -->
-<!-- <link href="/wine/assets/bootstrap_assets/dist/css/bootstrap.min.css"
-	rel="stylesheet"> -->
+
 <link rel="stylesheet" href="/wine/assets/css/bootstrap.css">
 
 
@@ -67,6 +66,8 @@ a:hover {
 			</div>
 		</section>
 		&nbsp;&nbsp;&nbsp;
+		
+		<!-- 정렬 -->
 		<a href="/wine/?keyword=${keyword}&wine_type=${wine_type}&sort_type=wine_name_up" class="sort">가나다↑</a>&nbsp;&nbsp;&nbsp;
 		<a href="/wine/?keyword=${keyword}&wine_type=${wine_type}&sort_type=wine_name_down"class="sort">가나다↓</a>&nbsp;&nbsp;&nbsp;
 		<a href="/wine/?keyword=${keyword}&wine_type=${wine_type}&sort_type=wine_price_up" class="sort">낮은가격순</a>&nbsp;&nbsp;&nbsp;
@@ -79,9 +80,6 @@ a:hover {
 
 			<div class="container">
 
-				<!-- 정렬 -->
-				
-
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
 					<div class="col">
 
@@ -89,11 +87,10 @@ a:hover {
 						<br>
 						<table>
 							<c:forEach items="${wineList}" var="winelist">
-								<!-- <div class="card shadow-sm"> -->
-								<!--            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>-->
-								<td><a href="/wine/wineView?wine_no=${winelist.wine_no}">
+								<td>
+									<a href="/wine/wineView?wine_no=${winelist.wine_no}">
 										<img src="${winelist.wine_image}" alt="image">
-								</a>
+									</a>
 
 									<div class="card-body">
 										<p class="card-text">와인명 : ${winelist.wine_name}</p>

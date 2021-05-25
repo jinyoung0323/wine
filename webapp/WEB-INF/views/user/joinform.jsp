@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- 	<script type="text/javascript" src="WEB-INF/views/user/joinsuccess.js"></script> -->
-	<title>회원가입 Form</title>
+
 	<script language="javascript">
 	   function validate() {
 
@@ -16,13 +16,8 @@
 	       var birth = document.getElementById("birth");
 	       var address = document.getElementById("address");
 	 
-// 	       if(email.value=="") {
-// 	           alert("이메일을 입력해 주세요");
-// 	           email.focus();
-// 	           return false;
-// 	       }
 	
-	    // 이메일 유효성 검사
+	   		// 이메일 유효성 검사
 		    var str=email.value;	   
 		    var atPos = str.indexOf('@');
 		    var atLastPos = str.lastIndexOf('@');
@@ -40,18 +35,8 @@
 			  return false;
 		   } 
 	
-// 	       if(nick_name.value=="") {
-// 	           alert("이름을 입력해 주세요");
-// 	           nick_name.focus();
-// 	           return false;
-// 	       }   
-	    	
-// 	       if(birth.value=="") {
-// 	           alert("생년월일를 적어주세요");
-// 	           birth.focus();
-// 	           return false;
-// 	       }
-	    // 생년월일 유효성 체크
+
+	    	// 생년월일 유효성 체크
 			 var year = Number(birth.substr(0,4)); 
 		     var month = Number(birth.substr(4,2));
 		     var day = Number(birth.substr(6,2));
@@ -83,24 +68,6 @@
 		               return false;
 		          }
 		     }
-	   
-// 	       if(phone_no.value=="") {
-// 	           alert("전화번호를 적어주세요");
-// 	           phone_no.focus();
-// 	           return false;
-// 	       }
-	
-// 	       if(password.value=="") {
-// 	           alert("비밀번호를 적어주세요");
-// 	           password.focus();
-// 	           return false;
-// 	       }
-	
-// 	       if(address.value=="") {
-// 	           alert("주소를 적어주세요");
-// 	           address.focus();
-// 	           return false;
-// 	       }
 	   }
 	</script>
 </head>
@@ -113,7 +80,6 @@
 						
 		<head>
 		  <meta charset="utf-8">
-		  <title>Checkout example · Bootstrap v5.0</title>
 		
 		  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
 

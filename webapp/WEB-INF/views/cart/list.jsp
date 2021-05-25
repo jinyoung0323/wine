@@ -53,12 +53,7 @@ body {
 .mb-4, .my-4 {
 	margin-bottom: 1.5rem !important;
 }
-/* hr {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border: 0;
-    border-top: 1px solid rgba(0,0,0,.1);
-} */
+
 .text-grey-m2 {
 	color: #888a8d !important;
 }
@@ -174,6 +169,14 @@ a:hover {
 	function order() {
 		alert("결제페이지로 이동합니다.");
 	}
+	
+	function button_event(no) {
+		if (confirm("삭제 하시겠습니까?") == true) { //확인
+			window.location = "/wine/cartDelete?wine_no=" + no;
+		} else { //취소
+			return;
+		}
+	}
 </script>
 
 </head>
@@ -186,74 +189,21 @@ a:hover {
 		rel="stylesheet" />
 
 	<div class="page-content container">
-		<!--  <div class="page-header text-blue-d2">
-        <h1 class="page-title text-secondary-d1">
-            Invoice
-            <small class="page-info">
-                <i class="fa fa-angle-double-right text-80"></i>
-                ID: #111-222
-            </small>
-        </h1>
-        <div class="page-tools">
-            <div class="action-buttons">
-                <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="Print">
-                    <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2"></i>
-                    Print
-                </a>
-                <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="PDF">
-                    <i class="mr-1 fa fa-file-pdf-o text-danger-m1 text-120 w-2"></i>
-                    Export
-                </a>
-            </div>
-        </div>
-    </div>
- -->
 		<div class="container px-0">
 			<div class="row mt-4">
 				<div class="col-12 col-lg-10 offset-lg-1">
 					<div class="row">
 						<div class="col-12">
-							<!-- <div class="text-center text-150">
-                            <i class="fa fa-book fa-2x text-success-m2 mr-1"></i>
-                            <span class="text-default-d3">Bootdey.com</span>
-                        </div> -->
+							
 						</div>
 					</div>
-					<!-- .row -->
-
-					<!--  <hr class="row brc-default-l1 mx-n1 mb-4" /> -->
-
-					<!-- <div class="row">
-						<div class="col-sm-6">
-							<div>
-								<span class="text-sm text-grey-m2 align-middle">To:</span> <span
-									class="text-600 text-110 text-blue align-middle">Alex
-									Doe</span>
-							</div>
-							<div class="text-grey-m2">
-								<div class="my-1">Street, City</div>
-								<div class="my-1">State, Country</div>
-								<div class="my-1">
-									<i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b
-										class="text-600">111-111-111</b>
-								</div>
-							</div>
-						</div> -->
-						<!-- /.col -->
-
 						<div
 							class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
 							<hr class="d-sm-none" />
 							<div class="text-grey-m2">
-								<!--  <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
-                                Invoice
-                            </div>
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">ID:</span> #111-222</div>
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Issue Date:</span> Oct 12, 2019</div>
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Status:</span> <span class="badge badge-warning badge-pill px-25">Unpaid</span></div> -->
+							
 							</div>
 						</div>
-						<!-- /.col -->
 					</div>
 
 					<div class="mt-4">
@@ -288,7 +238,8 @@ a:hover {
 										
 										<div class="col-1">
 										
-										<a href="/wine/cartDelete?wine_no=${cart.wine_no}">삭제</a></div>
+										<a onclick="button_event(${cart.wine_no})" 
+										href="#">삭제</a></div>
 
 									</c:if>
 								</div>
@@ -314,7 +265,7 @@ a:hover {
 						<hr />
 
 						<div>
-							<!-- <span class="text-secondary-d1 text-105">Thank you for your business</span> -->
+						
 							<a href="/wine/pay?email=${User.email}"
 								class="btn btn-info btn-bold px-10 float-right mt-3 mt-lg-0"
 								onclick="order()">결제하기</a>

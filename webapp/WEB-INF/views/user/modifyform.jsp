@@ -4,7 +4,6 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>회원정보수정 Form</title>
 </head>
 <body>
 
@@ -15,7 +14,6 @@
 						
 		<head>
 		  <meta charset="utf-8">
-		  <title>Checkout example · Bootstrap v5.0</title>
 		
 		  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
 

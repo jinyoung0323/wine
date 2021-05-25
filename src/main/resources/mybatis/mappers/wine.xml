@@ -177,7 +177,6 @@
 	</insert>
 
 	<!-- 와인 삭제 -->
-
 	<delete id="delete" parameterType="com.javaex.vo.WineVo">
 		<![CDATA[
 		BEGIN
