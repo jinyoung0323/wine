@@ -59,7 +59,7 @@
 	rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="blog.css" rel="stylesheet">
-		</head>
+		</head> 
 		<body>
 			<center>
 				<table>

@@ -11,7 +11,7 @@
 <style>
 body {
 	margin-top: 20px;
-	color: #484b51;
+	color: #484b50;
 }
 
 .text-secondary-d1 {
