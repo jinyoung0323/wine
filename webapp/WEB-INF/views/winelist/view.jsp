@@ -107,7 +107,9 @@
 							<td>${wineList.wine_description}</td>
 						</tr>
 						<tr align="right">
+						
 							<td colspan="4"><br> <br> <!-- 장바구니에 담기 : cartInsert -->
+							<c:if test="${User.email != null }">
 								<input type="hidden" name="wine_price" value="${wineList.wine_price}">
 								<input type="hidden" name="email" value="${User.email}">
 								<input type="hidden" name="wine_no" value="${wineList.wine_no}">
@@ -117,9 +119,11 @@
 										<option value="${i}">${i}</option>
 									</c:forEach>
 							</select>&nbsp;개 <input type="submit" value="장바구니에 담기"> 
-							
+							</c:if>
 							</td>
+						
 						</tr>
+						
 						<br /><br /><br />
 					</form>
 				</table>
